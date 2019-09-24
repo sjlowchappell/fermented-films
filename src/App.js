@@ -25,12 +25,21 @@ class App extends Component {
 
 	handleFormSubmit = e => {
 		e.preventDefault();
-		const restrictionOptions =
+		const drinkParams = { i: this.state.ingredient };
+		const mealParams =
 			this.state.restrictions === 'No Restrictions'
 				? { i: this.state.ingredient }
 				: { i: this.state.ingredient, c: this.state.restrictions };
-		this.fetchData('https://www.thecocktaildb.com/api/json/v1/1/filter.php?', { i: this.state.ingredient });
-		this.fetchData('https://www.themealdb.com/api/json/v1/1/filter.php?', restrictionOptions);
+		const movieParams = {
+			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
+			langue: 'en-US',
+			query: this.state.ingredient,
+			page: 1,
+			include_adult: false,
+		};
+		this.fetchData('https://www.thecocktaildb.com/api/json/v1/1/filter.php?', drinkParams);
+		this.fetchData('https://www.themealdb.com/api/json/v1/1/filter.php?', mealParams);
+		this.fetchData('https://api.themoviedb.org/3/search/movie?', movieParams);
 	};
 	handleFormChange = e => {
 		const key = e.target.id;
