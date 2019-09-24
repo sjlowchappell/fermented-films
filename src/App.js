@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import Header from './components/header';
 import Form from './components/form';
@@ -14,8 +15,15 @@ class App extends Component {
 		};
 	}
 
+	fetchData = () => {
+		return axios
+			.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${this.state.ingredient}`)
+			.then(res => console.log(res.data.drinks));
+	};
+
 	handleFormSubmit = e => {
 		e.preventDefault();
+		this.fetchData();
 		console.log(this.state);
 	};
 	handleFormChange = e => {
