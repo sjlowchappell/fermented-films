@@ -15,16 +15,22 @@ class App extends Component {
 		};
 	}
 
-	fetchData = () => {
+	fetchData = (url, parameters) => {
 		return axios
-			.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${this.state.ingredient}`)
-			.then(res => console.log(res.data.drinks));
+			.get(url, {
+				params: parameters,
+			})
+			.then(res => console.log(res.data));
 	};
 
 	handleFormSubmit = e => {
 		e.preventDefault();
-		this.fetchData();
-		console.log(this.state);
+		const restrictionOptions =
+			this.state.restrictions === 'No Restrictions'
+				? { i: this.state.ingredient }
+				: { i: this.state.ingredient, c: this.state.restrictions };
+		this.fetchData('https://www.thecocktaildb.com/api/json/v1/1/filter.php?', { i: this.state.ingredient });
+		this.fetchData('https://www.themealdb.com/api/json/v1/1/filter.php?', restrictionOptions);
 	};
 	handleFormChange = e => {
 		const key = e.target.id;
