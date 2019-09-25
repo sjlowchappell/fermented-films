@@ -16,20 +16,14 @@ class App extends Component {
 	}
 
 	fetchData = (url, parameters) => {
-		return axios
-			.get(url, {
-				params: parameters,
-			})
-			.then(res => console.log(res.data));
+		return axios.get(url, {
+			params: parameters,
+		});
 	};
 
-	handleFormSubmit = e => {
+	handleFormSubmit = async e => {
 		e.preventDefault();
 		const drinkParams = { i: this.state.ingredient };
-		const mealParams =
-			this.state.restrictions === 'No Restrictions'
-				? { i: this.state.ingredient }
-				: { i: this.state.ingredient, c: this.state.restrictions };
 		const movieParams = {
 			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
 			langue: 'en-US',
@@ -37,9 +31,21 @@ class App extends Component {
 			page: 1,
 			include_adult: false,
 		};
-		this.fetchData('https://www.thecocktaildb.com/api/json/v1/1/filter.php?', drinkParams);
-		this.fetchData('https://www.themealdb.com/api/json/v1/1/filter.php?', mealParams);
-		this.fetchData('https://api.themoviedb.org/3/search/movie?', movieParams);
+		const requests = [
+			{ url: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?', params: drinkParams },
+			{ url: 'https://www.themealdb.com/api/json/v1/1/filter.php?', params: drinkParams },
+			{ url: 'https://api.themoviedb.org/3/search/movie?', params: movieParams },
+		];
+		const requestList = requests.map(request => {
+			return this.fetchData(request.url, request.params);
+		});
+		const info = await Promise.all(requestList);
+		console.log(info);
+		this.setState({
+			drinkOptions: info[0].data.drinks,
+			mealOptions: info[1].data.meals,
+			movieOptions: info[2].data.results,
+		});
 	};
 	handleFormChange = e => {
 		const key = e.target.id;
