@@ -7,7 +7,6 @@ import Footer from './components/footer';
 import Recommendation from './components/recommendation';
 import GroceryList from './components/groceryList';
 import Recipe from './components/recipe';
-import uuidv4 from 'uuid/v4';
 
 const ingredients = ['lime', 'cream'];
 class App extends Component {
@@ -19,6 +18,36 @@ class App extends Component {
 			currentSelections: [],
 		};
 	}
+
+	shakeItUp = async e => {
+		const movieParams = {
+			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
+			language: 'en-US',
+		};
+		const index = parseInt(e.target.value);
+		const listName = e.target.dataset.list;
+		const newOption = this.chooseNewOption(this.state[listName], this.state[listName].length);
+		const dataRequestOptions = [
+			{ url: 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?', params: { i: newOption.idDrink } },
+			{ url: 'https://www.themealdb.com/api/json/v1/1/lookup.php?', params: { i: newOption.idMeal } },
+			{ url: `https://api.themoviedb.org/3/movie/${newOption.id}`, params: movieParams },
+		];
+
+		const resolvedOption = await this.fetchData(dataRequestOptions[index].url, dataRequestOptions[index].params);
+		let data;
+		if (index === 0) {
+			data = resolvedOption.data.drinks[0];
+		} else if (index === 1) {
+			data = resolvedOption.data.meals[0];
+		} else {
+			data = resolvedOption.data;
+		}
+		const newSelections = [...this.state.currentSelections];
+		newSelections[index] = data;
+		this.setState({
+			currentSelections: newSelections,
+		});
+	};
 
 	fetchData = (url, parameters) => {
 		return axios.get(url, {
@@ -44,7 +73,6 @@ class App extends Component {
 			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
 			language: 'en-US',
 			query: this.state.ingredient,
-			page: 1,
 			include_adult: false,
 		};
 		const initialDataRequests = [
@@ -64,9 +92,11 @@ class App extends Component {
 		const drinkList = initialInfo[0].data.drinks;
 		const mealList = initialInfo[1].data.meals;
 		const movieList = initialInfo[2].data.results;
+		console.log(movieList);
+		const filteredMovies = movieList.filter(movie => movie.poster_path !== null);
 		const newDrink = this.chooseNewOption(drinkList, drinkList.length);
 		const newMeal = this.chooseNewOption(mealList, mealList.length);
-		const newMovie = this.chooseNewOption(movieList, movieList.length);
+		const newMovie = this.chooseNewOption(filteredMovies, filteredMovies.length);
 		const secondMovieParams = {
 			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
 			language: 'en-US',
@@ -85,7 +115,7 @@ class App extends Component {
 		this.setState({
 			drinkOptions: drinkList,
 			mealOptions: mealList,
-			movieOptions: movieList,
+			movieOptions: filteredMovies,
 			currentSelections: currentSelections,
 		});
 	};
@@ -99,7 +129,6 @@ class App extends Component {
 
 	renderRecommendations() {
 		const { currentSelections } = this.state;
-		console.log(currentSelections);
 		if (currentSelections.length !== 0) {
 			const drink = this.state.currentSelections[0];
 			const meal = this.state.currentSelections[1];
@@ -111,9 +140,7 @@ class App extends Component {
 						Tonight You'll be drinking a {drink.strDrink}, eating {meal.strMeal} while watching{' '}
 						{movie.title}.
 					</h2>
-					{currentSelections.map(selection => {
-						return <Recommendation key={uuidv4()} selection={selection} />;
-					})}
+					<Recommendation onClick={this.shakeItUp} selections={this.state.currentSelections} />
 					<h2>
 						To prepare for your evening, first you'll need to pick up your groceries, prepare your food and
 						drink, and then get watching.
