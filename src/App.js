@@ -5,6 +5,8 @@ import Header from './components/header';
 import Form from './components/form';
 import Footer from './components/footer';
 import Recommendation from './components/recommendation';
+import GroceryList from './components/groceryList';
+import uuidv4 from 'uuid/v4';
 
 const ingredients = ['lime', 'cream'];
 class App extends Component {
@@ -101,9 +103,28 @@ class App extends Component {
 		const { currentSelections } = this.state;
 		console.log(currentSelections);
 		if (currentSelections.length !== 0) {
-			return currentSelections.map(selection => {
-				return <Recommendation selection={selection} />;
-			});
+			const drink = this.state.currentSelections[0];
+			const meal = this.state.currentSelections[1];
+			const movie = this.state.currentSelections[2];
+
+			return (
+				<div>
+					<h2>
+						Tonight You'll be drinking a {drink.strDrink}, eating a {meal.strMeal} while watching{' '}
+						{movie.title}.
+					</h2>
+					{currentSelections.map(selection => {
+						return <Recommendation key={uuidv4()} selection={selection} />;
+					})}
+					<h2>
+						To prepare for your evening, first you'll need to pick up your groceries, prepare your food and
+						drink, and then get watching.
+					</h2>
+					<h2>Grocery List:</h2>
+					<GroceryList drink={drink} meal={meal} />
+					<h2>Instructions:</h2>
+				</div>
+			);
 		}
 	}
 
