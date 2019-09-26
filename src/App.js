@@ -8,7 +8,7 @@ import Recommendation from './components/recommendation';
 import GroceryList from './components/groceryList';
 import Recipe from './components/recipe';
 
-const ingredients = ['lime', 'cream'];
+const ingredients = ['lime', 'lemon', 'egg', 'orange', 'water', 'ginger', 'strawberries', 'milk', 'red wine', 'sugar'];
 class App extends Component {
 	constructor() {
 		super();
@@ -92,7 +92,6 @@ class App extends Component {
 		const drinkList = initialInfo[0].data.drinks;
 		const mealList = initialInfo[1].data.meals;
 		const movieList = initialInfo[2].data.results;
-		console.log(movieList);
 		const filteredMovies = movieList.filter(movie => movie.poster_path !== null);
 		const newDrink = this.chooseNewOption(drinkList, drinkList.length);
 		const newMeal = this.chooseNewOption(mealList, mealList.length);
@@ -112,6 +111,7 @@ class App extends Component {
 		const secondInfo = await Promise.all(secondRequestList);
 
 		const currentSelections = [secondInfo[0].data.drinks[0], secondInfo[1].data.meals[0], secondInfo[2].data];
+		console.log(drinkList, mealList, filteredMovies);
 		this.setState({
 			drinkOptions: drinkList,
 			mealOptions: mealList,
