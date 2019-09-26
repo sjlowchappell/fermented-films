@@ -6,6 +6,7 @@ import Form from './components/form';
 import Footer from './components/footer';
 import Recommendation from './components/recommendation';
 import GroceryList from './components/groceryList';
+import Recipe from './components/recipe';
 import uuidv4 from 'uuid/v4';
 
 const ingredients = ['lime', 'cream'];
@@ -80,9 +81,6 @@ class App extends Component {
 		const secondRequestList = this.getDataForList(secondDataRequests);
 		const secondInfo = await Promise.all(secondRequestList);
 
-		// const currentDrink = secondInfo[0].data.drinks[0];
-		// const currentMeal = secondInfo[1].data.meals[0];
-		// const currentMovie = secondInfo[2].data;
 		const currentSelections = [secondInfo[0].data.drinks[0], secondInfo[1].data.meals[0], secondInfo[2].data];
 		this.setState({
 			drinkOptions: drinkList,
@@ -110,7 +108,7 @@ class App extends Component {
 			return (
 				<div>
 					<h2>
-						Tonight You'll be drinking a {drink.strDrink}, eating a {meal.strMeal} while watching{' '}
+						Tonight You'll be drinking a {drink.strDrink}, eating {meal.strMeal} while watching{' '}
 						{movie.title}.
 					</h2>
 					{currentSelections.map(selection => {
@@ -123,6 +121,7 @@ class App extends Component {
 					<h2>Grocery List:</h2>
 					<GroceryList drink={drink} meal={meal} />
 					<h2>Instructions:</h2>
+					<Recipe drink={drink} meal={meal} />
 				</div>
 			);
 		}

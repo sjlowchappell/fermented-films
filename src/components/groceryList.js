@@ -5,7 +5,7 @@ function GroceryList({ drink, meal }) {
 	const getIngredientArray = (food, num) => {
 		const ingredientArray = [];
 		for (let i = 1; i <= num; i++) {
-			if (food[`strIngredient${i}`] !== '' && !food[`strIngredient${i}`].includes('null')) {
+			if (food[`strIngredient${i}`] !== '' && food[`strIngredient${i}`] !== null) {
 				ingredientArray.push({
 					measure: food[`strMeasure${i}`],
 					name: food[`strIngredient${i}`],
