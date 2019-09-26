@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/header';
 import Form from './components/form';
 import Footer from './components/footer';
+import Recommendation from './components/recommendation';
 
 const ingredients = ['lime', 'cream'];
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
 		this.state = {
 			ingredient: 'lime',
 			restrictions: 'No Restrictions',
+			currentSelections: [],
 		};
 	}
 
@@ -62,7 +64,6 @@ class App extends Component {
 		const newDrink = this.chooseNewOption(drinkList, drinkList.length);
 		const newMeal = this.chooseNewOption(mealList, mealList.length);
 		const newMovie = this.chooseNewOption(movieList, movieList.length);
-		console.log(newMovie);
 		const secondMovieParams = {
 			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
 			language: 'en-US',
@@ -77,16 +78,15 @@ class App extends Component {
 		const secondRequestList = this.getDataForList(secondDataRequests);
 		const secondInfo = await Promise.all(secondRequestList);
 
-		const currentDrink = secondInfo[0].data.drinks[0];
-		const currentMeal = secondInfo[1].data.meals[0];
-		const currentMovie = secondInfo[2].data;
+		// const currentDrink = secondInfo[0].data.drinks[0];
+		// const currentMeal = secondInfo[1].data.meals[0];
+		// const currentMovie = secondInfo[2].data;
+		const currentSelections = [secondInfo[0].data.drinks[0], secondInfo[1].data.meals[0], secondInfo[2].data];
 		this.setState({
 			drinkOptions: drinkList,
 			mealOptions: mealList,
 			movieOptions: movieList,
-			currentDrink: currentDrink,
-			currentMeal: currentMeal,
-			currentMovie: currentMovie,
+			currentSelections: currentSelections,
 		});
 	};
 	handleFormChange = e => {
@@ -96,6 +96,17 @@ class App extends Component {
 			[key]: value,
 		});
 	};
+
+	renderRecommendations() {
+		const { currentSelections } = this.state;
+		console.log(currentSelections);
+		if (currentSelections.length !== 0) {
+			return currentSelections.map(selection => {
+				return <Recommendation selection={selection} />;
+			});
+		}
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -114,6 +125,7 @@ class App extends Component {
 							handleFormSubmit={this.handleFormSubmit}
 							handleFormChange={this.handleFormChange}
 						/>
+						{this.renderRecommendations()}
 					</div>
 				</main>
 				<Footer />
