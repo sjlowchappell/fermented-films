@@ -1,9 +1,6 @@
 // font-family: 'Bungee Shade', cursive;
 // font-family: 'Roboto', sans-serif;
 
-$heading-font: 'Bungee Shade', cursive;
-$primary-font: 'Roboto', sans-serif;
-
 html {
 	font-size: 62.5%;
 }
@@ -11,13 +8,21 @@ html {
 body {
 	font-family: $primary-font;
 	font-size: 2rem;
+	color: $text-color;
 }
 
 h1 {
 	font-family: $heading-font;
-	font-size: 6rem;
+	font-size: 10rem;
+	color: $accent-color-yellow;
 }
 
 .specialWord {
-	font-family: $heading-font;
+	color: $accent-color-yellow;
+}
+
+a {
+	color: $accent-color-yellow;
+	text-decoration: none;
+	font-style: italic;
 }

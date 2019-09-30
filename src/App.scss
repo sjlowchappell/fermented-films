@@ -1,7 +1,14 @@
 @import './styles/normalize';
+@import './styles//variables';
 @import './styles/typography';
 @import './styles/header';
 @import './styles/recommendation';
+@import './styles/footer';
+@import './styles/grocery';
+
+body {
+	background-color: $background-color;
+}
 
 .wrapper {
 	margin: 0 auto;

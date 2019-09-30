@@ -19,27 +19,30 @@ function GroceryList({ drink, meal }) {
 
 	return (
 		<div>
-			<h3>Here are your groceries:</h3>
-			<h4>For your drink: {drink.strDrink}</h4>
-			<ul>
-				{drinkIngredients.map(ingredient => {
-					return (
-						<li key={uuidv4()}>
-							{ingredient.measure} {ingredient.name}
-						</li>
-					);
-				})}
-			</ul>
-			<h4>For your meal: {meal.strMeal}</h4>
-			<ul>
-				{mealIngredients.map(ingredient => {
-					return (
-						<li key={uuidv4()}>
-							{ingredient.measure} {ingredient.name}
-						</li>
-					);
-				})}
-			</ul>
+			<div className="groceryList">
+				<h4>For your drink: {drink.strDrink}</h4>
+				<ul>
+					{drinkIngredients.map(ingredient => {
+						return (
+							<li key={uuidv4()}>
+								<span className="specialWord">{ingredient.measure}</span> {ingredient.name}
+							</li>
+						);
+					})}
+				</ul>
+			</div>
+			<div className="groceryList">
+				<h4>For your meal: {meal.strMeal}</h4>
+				<ul>
+					{mealIngredients.map(ingredient => {
+						return (
+							<li key={uuidv4()}>
+								<span className="specialWord">{ingredient.measure}</span> {ingredient.name}
+							</li>
+						);
+					})}
+				</ul>
+			</div>
 		</div>
 	);
 }
