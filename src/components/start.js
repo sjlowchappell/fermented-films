@@ -140,10 +140,6 @@ class Start extends Component {
 						<span className="specialWord">{meal.strMeal}</span>, while watching{' '}
 						<span className="specialWord">{movie.title}</span>.
 					</h2>
-					<h2>
-						To prepare for your evening, first you'll need to pick up your groceries, prepare your food and
-						drink, and then get watching.
-					</h2>
 					<Link to="/search/recommendations/">Recommendations</Link>
 					<Link to="/search/groceries/">Groceries</Link>
 					<Link to="/search/recipes/">Recipes</Link>
@@ -162,6 +158,9 @@ class Start extends Component {
 						render={props => <GroceryList {...props} drink={drink} meal={meal} />}
 					/>
 					<Route path="/search/recipes/" render={props => <Recipe {...props} drink={drink} meal={meal} />} />
+					<Link to="/search/recommendations/">Recommendations</Link>
+					<Link to="/search/groceries/">Groceries</Link>
+					<Link to="/search/recipes/">Recipes</Link>
 				</div>
 			);
 		}
