@@ -137,8 +137,9 @@ class App extends Component {
 			return (
 				<div>
 					<h2>
-						Tonight You'll be drinking a {drink.strDrink}, eating {meal.strMeal}, while watching{' '}
-						{movie.title}.
+						Tonight You'll be drinking a <span className="specialWord">{drink.strDrink}</span>, eating{' '}
+						<span className="specialWord">{meal.strMeal}</span>, while watching{' '}
+						<span className="specialWord">{movie.title}</span>.
 					</h2>
 					<Recommendation onClick={this.shakeItUp} selections={this.state.currentSelections} />
 					<h2>

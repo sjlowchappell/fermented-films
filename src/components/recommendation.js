@@ -8,44 +8,45 @@ function Recommendation({ selections, onClick }) {
 	const posterPath = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 	return (
 		<div>
-			{/* Drink Info: */}
-			<div>
-				<div>
-					<img src={drink.strDrinkThumb} alt="" />
+			<div className="recommendation-container">
+				{/* Drink Info: */}
+				<div className="recommendation">
+					<div>
+						<img src={drink.strDrinkThumb} alt="" />
+					</div>
+					<div>
+						<h4>{drink.strDrink}</h4>
+						<p>
+							Category: {drink.strAlcoholic}, {drink.strCategory}
+						</p>
+					</div>
+					<button onClick={onClick} data-list="drinkOptions" value="0">
+						Shake it Up!
+					</button>
 				</div>
-				<div>
-					<h4>{drink.strDrink}</h4>
-					<p>
-						Category: {drink.strAlcoholic}, {drink.strCategory}
-					</p>
-				</div>
-				<button onClick={onClick} data-list="drinkOptions" value="0">
-					Shake it Up!
-				</button>
-			</div>
 
-			{/* Meal Info: */}
-			<div>
-				<div>
-					<img src={meal.strMealThumb} alt="" />
+				{/* Meal Info: */}
+				<div className="recommendation">
+					<div>
+						<img src={meal.strMealThumb} alt="" />
+					</div>
+					<div>
+						<h4>{meal.strMeal}</h4>
+						<p>{/* Category: {meal.strArea}, {meal.strCategory} */}</p>
+						<p>
+							Original Recipe: <a href={meal.strSource}>here</a>
+						</p>
+						<p>
+							Video instructions can be found <a href={meal.strYoutube}>here</a>
+						</p>
+					</div>
+					<button onClick={onClick} data-list="mealOptions" value="1">
+						Shake it Up!
+					</button>
 				</div>
-				<div>
-					<h4>{meal.strMeal}</h4>
-					<p>{/* Category: {meal.strArea}, {meal.strCategory} */}</p>
-					<p>
-						Original Recipe: <a href={meal.strSource}>here</a>
-					</p>
-					<p>
-						Video instructions can be found <a href={meal.strYoutube}>here</a>
-					</p>
-				</div>
-				<button onClick={onClick} data-list="mealOptions" value="1">
-					Shake it Up!
-				</button>
 			</div>
-
 			{/* Movie Info: */}
-			<div>
+			<div className="movie-recommendation">
 				<div>
 					<img src={posterPath} alt="" />
 				</div>
