@@ -19,6 +19,7 @@ function GroceryList({ drink, meal }) {
 
 	return (
 		<div>
+			<h2>Grocery List:</h2>
 			<div className="groceryList">
 				<h4>For your drink: {drink.strDrink}</h4>
 				<ul>
