@@ -3,6 +3,7 @@ import uuidv4 from 'uuid/v4';
 import { Redirect } from 'react-router-dom';
 
 function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isSubmitted }) {
+	const currentlySelectedIngredient = ingredient;
 	return (
 		<main className="wrapper">
 			{/* if the form has been submitted, redirect to results */}
@@ -17,18 +18,28 @@ function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isS
 			{/* form to submit ingredient theme */}
 			<form>
 				<label htmlFor="ingredient">Pick an Ingredient Theme</label>
-
-				{/* uses a select option fed from props */}
-				{/* when form is changed, passes information back to update state in App */}
-				<select onChange={handleFormChange} name="ingredient" id="ingredient" value={ingredient}>
+				<div className="ingredientsGallery">
 					{ingredients.map(ingredient => {
 						return (
-							<option value={ingredient} key={uuidv4()}>
-								{ingredient}
-							</option>
+							<div key={uuidv4()}>
+								<input
+									type="radio"
+									name="ingredient"
+									id={ingredient.name}
+									value={ingredient.name}
+									onChange={handleFormChange}
+									checked={currentlySelectedIngredient === ingredient.name}
+								/>
+								<label htmlFor={ingredient.name}>
+									<div>
+										<img src={ingredient.picture} alt="" />
+									</div>
+									<p>{ingredient.name}</p>
+								</label>
+							</div>
 						);
 					})}
-				</select>
+				</div>
 
 				{/* button submits form */}
 				<button onClick={handleFormSubmit}>Submit</button>
@@ -49,14 +60,5 @@ export default Form;
 // 	/* Need to adjust the handle form change, but the below code will allow for a gallery of ingredient options */
 // }
 // {
-// 	/* <div>
-// 	{ingredients.map(ingredient => {
-// 		return (
-// 			<label value={ingredient} key={uuidv4()}>
-// 				<input type="radio" name="ingredient" />
-// 				{ingredient}
-// 			</label>
-// 		);
-// 	})}
-// </div> */
+
 // }
