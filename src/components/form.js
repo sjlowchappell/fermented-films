@@ -11,13 +11,13 @@ function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isS
 			{/* blurb talking about the app */}
 			<p>
 				With Fermented Films, pick an ingredient theme for the evening. We'll curate a meal, drink, and movie
-				combination around your selection. Don't like one of the available options? Click "Shake it up!" and
-				we'll find another that suits your needs.
+				combination around your selection. Don't like one of our recommendations? Click "Shake it up!" and we'll
+				find another that suits your needs.
 			</p>
+			<p>Pick an Ingredient Theme:</p>
 
 			{/* form to submit ingredient theme */}
 			<form>
-				<label htmlFor="ingredient">Pick an Ingredient Theme</label>
 				<div className="ingredientsGallery">
 					{ingredients.map(ingredient => {
 						return (
