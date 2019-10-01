@@ -22,35 +22,23 @@ class App extends Component {
 		};
 	}
 
-	shakeItUp = async e => {
-		const movieParams = {
-			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
-			language: 'en-US',
-		};
-		const index = parseInt(e.target.value);
-		const listName = e.target.dataset.list;
-		const newOption = this.chooseNewOption(this.state[listName], this.state[listName].length);
-		const dataRequestOptions = [
-			{ url: 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?', params: { i: newOption.idDrink } },
-			{ url: 'https://www.themealdb.com/api/json/v1/1/lookup.php?', params: { i: newOption.idMeal } },
-			{ url: `https://api.themoviedb.org/3/movie/${newOption.id}`, params: movieParams },
-		];
+	// Form related functions:
 
-		const resolvedOption = await this.fetchData(dataRequestOptions[index].url, dataRequestOptions[index].params);
-		let data;
-		if (index === 0) {
-			data = resolvedOption.data.drinks[0];
-		} else if (index === 1) {
-			data = resolvedOption.data.meals[0];
-		} else {
-			data = resolvedOption.data;
-		}
-		const newSelections = [...this.state.currentSelections];
-		newSelections[index] = data;
+	handleFormSubmit = async e => {
+		e.preventDefault();
+		await this.getLists();
+		this.getCurrentSelections();
+	};
+
+	handleFormChange = e => {
+		const key = e.target.id;
+		const value = e.target.value;
 		this.setState({
-			currentSelections: newSelections,
+			[key]: value,
 		});
 	};
+
+	// Axios related functions:
 
 	fetchData = (url, parameters) => {
 		return axios.get(url, {
@@ -58,17 +46,12 @@ class App extends Component {
 		});
 	};
 
-	getDataForList = list => {
+	fetchDataForList = list => {
 		return Promise.all(
 			list.map(item => {
 				return this.fetchData(item.url, item.params);
 			}),
 		);
-	};
-
-	chooseNewOption = (list, num) => {
-		const newIndex = Math.floor(Math.random() * num);
-		return list[newIndex];
 	};
 
 	getLists = async () => {
@@ -82,7 +65,7 @@ class App extends Component {
 			include_adult: false,
 		};
 
-		// Create an array of urls and parameters to send to getDataForList
+		// Create an array of urls and parameters to send to fetchDataForList
 		const listEndpoints = [
 			{
 				url: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?',
@@ -96,7 +79,7 @@ class App extends Component {
 		];
 
 		// Make api calls based upon passed endpoints
-		const listData = await this.getDataForList(listEndpoints);
+		const listData = await this.fetchDataForList(listEndpoints);
 
 		// Filter movies to remove anything that doesn't have a poster image
 		const filteredMovies = listData[2].data.results.filter(movie => movie.poster_path !== null);
@@ -105,7 +88,6 @@ class App extends Component {
 		this.setState({
 			curatedLists: [listData[0].data.drinks, listData[1].data.meals, filteredMovies],
 		});
-		console.log(this.state);
 	};
 
 	getCurrentSelections = async () => {
@@ -120,7 +102,7 @@ class App extends Component {
 			language: 'en-US',
 		};
 
-		// Create an array of urls and parameters to send to getDataForList
+		// Create an array of urls and parameters to send to fetchDataForList
 		const selectionEndpoints = [
 			{
 				url: 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?',
@@ -137,7 +119,7 @@ class App extends Component {
 		];
 
 		// Make api calls based on passed endpoints
-		const selectionData = await this.getDataForList(selectionEndpoints);
+		const selectionData = await this.fetchDataForList(selectionEndpoints);
 
 		// Set state with lists and current selections
 		this.setState({
@@ -145,18 +127,52 @@ class App extends Component {
 		});
 	};
 
-	handleFormSubmit = async e => {
-		e.preventDefault();
-		await this.getLists();
-		this.getCurrentSelections();
+	shakeItUp = async e => {
+		// set parameters for movie
+		const movieParams = {
+			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
+			language: 'en-US',
+		};
+
+		// get index value based on value set on original option
+		const index = parseInt(e.target.value);
+
+		// get a new drink, meal, or movie based on index of selected "shake it up"
+		const newOption = this.chooseNewOption(this.state.curatedLists[index], this.state.curatedLists[index].length);
+		const dataRequestOptions = [
+			{ url: 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?', params: { i: newOption.idDrink } },
+			{ url: 'https://www.themealdb.com/api/json/v1/1/lookup.php?', params: { i: newOption.idMeal } },
+			{ url: `https://api.themoviedb.org/3/movie/${newOption.id}`, params: movieParams },
+		];
+
+		// Make an ajax request to the appropriate endpoint based on index
+		const resolvedOption = await this.fetchData(dataRequestOptions[index].url, dataRequestOptions[index].params);
+
+		// Conditional block to set the correct data based on index value
+		let data;
+		if (index === 0) {
+			data = resolvedOption.data.drinks[0];
+		} else if (index === 1) {
+			data = resolvedOption.data.meals[0];
+		} else {
+			data = resolvedOption.data;
+		}
+
+		// get current selections from state
+		const newSelections = [...this.state.currentSelections];
+
+		// update selections based upon newly acquired data
+		newSelections[index] = data;
+
+		// set state with new selections
+		this.setState({
+			currentSelections: newSelections,
+		});
 	};
 
-	handleFormChange = e => {
-		const key = e.target.id;
-		const value = e.target.value;
-		this.setState({
-			[key]: value,
-		});
+	chooseNewOption = (list, num) => {
+		const newIndex = Math.floor(Math.random() * num);
+		return list[newIndex];
 	};
 
 	renderRecommendations() {
