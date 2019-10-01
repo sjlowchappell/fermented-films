@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import axios from 'axios';
 import Header from './components/header';
@@ -22,16 +22,13 @@ class App extends Component {
 	}
 
 	// Form related functions:
-
 	handleFormSubmit = async e => {
 		e.preventDefault();
-		console.log('submitted the form!');
 		await this.getLists();
 		await this.getCurrentSelections();
 		this.setState({
 			isSubmitted: true,
 		});
-		console.log(this.state);
 	};
 
 	handleFormChange = e => {
@@ -43,13 +40,14 @@ class App extends Component {
 	};
 
 	// Axios related functions:
-
+	// axios request to get info from url and parameters
 	fetchData = (url, parameters) => {
 		return axios.get(url, {
 			params: parameters,
 		});
 	};
 
+	// returns results for a list of urls and parameters
 	fetchDataForList = list => {
 		return Promise.all(
 			list.map(item => {
@@ -58,6 +56,7 @@ class App extends Component {
 		);
 	};
 
+	// Get lists of potential drinks, meals, and movies based on ingredient selection
 	getLists = async () => {
 		// The following gets lists of movies, drinks, and meals basd on ingredient selection
 		// Set parameters for 3 different api calls
@@ -94,6 +93,7 @@ class App extends Component {
 		});
 	};
 
+	// Get currently selected drink, meal, and movie based on lists
 	getCurrentSelections = async () => {
 		// Once the lists have been established, we select a current choice for movie, drink, and meal and save them in a newSelections array
 
@@ -131,6 +131,7 @@ class App extends Component {
 		});
 	};
 
+	// Get a new drink, meal, or movie
 	shakeItUp = async e => {
 		// set parameters for movie
 		const movieParams = {
@@ -174,32 +175,11 @@ class App extends Component {
 		});
 	};
 
+	// Helper for shakeItUp and getCurrentSelections
 	chooseNewOption = (list, num) => {
 		const newIndex = Math.floor(Math.random() * num);
 		return list[newIndex];
 	};
-
-	renderRecommendations() {
-		const { currentSelections } = this.state;
-		if (currentSelections.length !== 0) {
-			const drink = this.state.currentSelections[0];
-			const meal = this.state.currentSelections[1];
-			const movie = this.state.currentSelections[2];
-
-			return (
-				<div>
-					<h2>
-						Tonight You'll be drinking a <span className="specialWord">{drink.strDrink}</span>, eating{' '}
-						<span className="specialWord">{meal.strMeal}</span>, while watching{' '}
-						<span className="specialWord">{movie.title}</span>.
-					</h2>
-					<Link to="/results/recommendations/">Recommendations</Link>
-					<Link to="/results/groceries/">Groceries</Link>
-					<Link to="/results/recipes/">Recipes</Link>
-				</div>
-			);
-		}
-	}
 
 	render() {
 		return (
