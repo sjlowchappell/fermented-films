@@ -1,5 +1,12 @@
-header {
-	margin: 0 auto;
+.homeHeader {
 	padding: 100px 0px;
 	height: 90vh;
+}
+
+.otherHeader {
+	h1 {
+		font-size: 4rem;
+		padding-bottom: 20px;
+		border-bottom: 3px solid $accent-color-yellow;
+	}
 }

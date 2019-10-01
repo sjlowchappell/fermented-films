@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.scss';
-// import Start from './components/start';
-// import Main from './components/main';
-import Header from './components/header';
 import axios from 'axios';
+import Header from './components/header';
 import Form from './components/form';
 import Footer from './components/footer';
 import Recommendation from './components/recommendation';
@@ -207,7 +205,7 @@ class App extends Component {
 		return (
 			<Router>
 				<div className="App">
-					<Route path="/" exact component={Header} />
+					<Route path="/" component={Header} />
 
 					<Route
 						path="/search/"
