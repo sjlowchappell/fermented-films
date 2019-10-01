@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import './App.scss';
 import axios from 'axios';
 import Header from './components/header';
 import Form from './components/form';
-import Footer from './components/footer';
+import Results from './components/results';
 import Recommendation from './components/recommendation';
 import GroceryList from './components/groceryList';
 import Recipe from './components/recipe';
-import Results from './components/results';
+import Footer from './components/footer';
 
 const ingredients = ['lime', 'lemon', 'egg', 'orange', 'water', 'ginger', 'strawberries', 'milk', 'red wine', 'sugar'];
 class App extends Component {
@@ -205,8 +205,10 @@ class App extends Component {
 		return (
 			<Router>
 				<div className="App">
+					{/* Start at home with just the Header and Footer showing */}
 					<Route path="/" component={Header} />
 
+					{/* Display the Form when the Get Started link is clicked in the header */}
 					<Route
 						path="/search/"
 						render={props => (
@@ -221,7 +223,8 @@ class App extends Component {
 						)}
 					/>
 
-					{this.state.currentSelections.length !== 0 ? (
+					{/* If this form is submitted, render the results. Otherwise, Redirect to the home page */}
+					{this.state.isSubmitted ? (
 						<>
 							<Route
 								path="/results/"
@@ -260,7 +263,9 @@ class App extends Component {
 								)}
 							/>
 						</>
-					) : null}
+					) : (
+						<Redirect to="/" />
+					)}
 					<Footer />
 				</div>
 			</Router>

@@ -2,6 +2,9 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 
 function GroceryList({ drink, meal }) {
+	// recipes return with separated measures and ingredients. Drinks comes with 15 total options
+	// Meals come with 20 total options. This function combines the correct measures and ingredients
+	// for the drink and meal such that they can be easily returned together.
 	const getIngredientArray = (food, num) => {
 		const ingredientArray = [];
 		for (let i = 1; i <= num; i++) {

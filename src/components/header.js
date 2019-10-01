@@ -17,7 +17,9 @@ function Header(props) {
 	) : (
 		<header className="otherHeader">
 			<div className="wrapper">
-				<h1>Fermented Films</h1>
+				<Link to="/">
+					<h1>Fermented Films</h1>
+				</Link>
 			</div>
 		</header>
 	);

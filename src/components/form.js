@@ -4,15 +4,22 @@ import { Redirect } from 'react-router-dom';
 
 function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isSubmitted }) {
 	return (
-		<div className="wrapper">
+		<main className="wrapper">
+			{/* if the form has been submitted, redirect to results */}
 			{isSubmitted && <Redirect to="/results/recommendations/" />}
+			{/* blurb talking about the app */}
 			<p>
-				With Fermented Films, pick an ingredient theme for the evening. Specify any dietary restrictions and
-				we'll curate a meal, drink, and movie combination around your selections. Don't like one of the
-				available options? Click "Shake it up!" and we'll find another that suits your needs.
+				With Fermented Films, pick an ingredient theme for the evening. We'll curate a meal, drink, and movie
+				combination around your selection. Don't like one of the available options? Click "Shake it up!" and
+				we'll find another that suits your needs.
 			</p>
+
+			{/* form to submit ingredient theme */}
 			<form>
 				<label htmlFor="ingredient">Pick an Ingredient Theme</label>
+
+				{/* uses a select option fed from props */}
+				{/* when form is changed, passes information back to update state in App */}
 				<select onChange={handleFormChange} name="ingredient" id="ingredient" value={ingredient}>
 					{ingredients.map(ingredient => {
 						return (
@@ -23,9 +30,10 @@ function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isS
 					})}
 				</select>
 
+				{/* button submits form */}
 				<button onClick={handleFormSubmit}>Submit</button>
 			</form>
-		</div>
+		</main>
 	);
 }
 
