@@ -67,6 +67,8 @@ class Start extends Component {
 
 	handleFormSubmit = async e => {
 		e.preventDefault();
+
+		// The following gets lists of movies, drinks, and meals basd on ingredient selection
 		const drinkParams = { i: this.state.ingredient };
 		const movieParams = {
 			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
@@ -92,6 +94,10 @@ class Start extends Component {
 		const mealList = initialInfo[1].data.meals;
 		const movieList = initialInfo[2].data.results;
 		const filteredMovies = movieList.filter(movie => movie.poster_path !== null);
+
+
+
+		// Once the lists have been established, we select a current choice for movie, drnik, and meal
 		const newDrink = this.chooseNewOption(drinkList, drinkList.length);
 		const newMeal = this.chooseNewOption(mealList, mealList.length);
 		const newMovie = this.chooseNewOption(filteredMovies, filteredMovies.length);
@@ -109,8 +115,11 @@ class Start extends Component {
 		const secondRequestList = this.getDataForList(secondDataRequests);
 		const secondInfo = await Promise.all(secondRequestList);
 
+		// Construct an array based upon the currently selected drink, meal, and movie
 		const currentSelections = [secondInfo[0].data.drinks[0], secondInfo[1].data.meals[0], secondInfo[2].data];
 		console.log(drinkList, mealList, filteredMovies);
+
+		// Set state with lists and current selections
 		this.setState({
 			drinkOptions: drinkList,
 			mealOptions: mealList,
@@ -118,6 +127,7 @@ class Start extends Component {
 			currentSelections: currentSelections,
 		});
 	};
+
 	handleFormChange = e => {
 		const key = e.target.id;
 		const value = e.target.value;
@@ -158,9 +168,6 @@ class Start extends Component {
 						render={props => <GroceryList {...props} drink={drink} meal={meal} />}
 					/>
 					<Route path="/search/recipes/" render={props => <Recipe {...props} drink={drink} meal={meal} />} />
-					<Link to="/search/recommendations/">Recommendations</Link>
-					<Link to="/search/groceries/">Groceries</Link>
-					<Link to="/search/recipes/">Recipes</Link>
 				</div>
 			);
 		}

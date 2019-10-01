@@ -14,6 +14,17 @@ function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange }) {
 					);
 				})}
 			</select>
+			{/* Need to adjust the handle form change, but the below code will allow for a gallery of ingredient options */}
+			{/* <div>
+				{ingredients.map(ingredient => {
+					return (
+						<label value={ingredient} key={uuidv4()}>
+							<input type="radio" name="ingredient" />
+							{ingredient}
+						</label>
+					);
+				})}
+			</div> */}
 
 			<button onClick={handleFormSubmit}>Submit</button>
 		</form>
