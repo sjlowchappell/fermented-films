@@ -13,9 +13,11 @@ function Results({ currentSelections }) {
 				<span className="specialWord">{meal.strMeal}</span>, while watching{' '}
 				<span className="specialWord">{movie.title}</span>.
 			</h2>
-			<Link to="/results/recommendations/">Recommendations</Link>
-			<Link to="/results/groceries/">Groceries</Link>
-			<Link to="/results/recipes/">Recipes</Link>
+			<div className="resultsNav">
+				<Link to="/results/recommendations/">Recommendations</Link>
+				<Link to="/results/groceries/">Groceries</Link>
+				<Link to="/results/recipes/">Recipes</Link>
+			</div>
 		</div>
 	);
 }

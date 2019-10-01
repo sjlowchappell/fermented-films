@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Header() {
+function Header(props) {
+	// Can use this to conditionally render the path
+	console.log(props.match.path);
 	return (
 		<header>
 			<div className="wrapper">

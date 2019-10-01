@@ -213,6 +213,7 @@ class App extends Component {
 						path="/search/"
 						render={props => (
 							<Form
+								{...props}
 								ingredient={this.state.ingredient}
 								ingredients={ingredients}
 								handleFormSubmit={this.handleFormSubmit}
