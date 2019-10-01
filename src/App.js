@@ -10,6 +10,7 @@ import Footer from './components/footer';
 import Recommendation from './components/recommendation';
 import GroceryList from './components/groceryList';
 import Recipe from './components/recipe';
+import Results from './components/results';
 
 const ingredients = ['lime', 'lemon', 'egg', 'orange', 'water', 'ginger', 'strawberries', 'milk', 'red wine', 'sugar'];
 class App extends Component {
@@ -17,8 +18,8 @@ class App extends Component {
 		super();
 		this.state = {
 			ingredient: 'lime',
-			restrictions: 'No Restrictions',
 			currentSelections: [],
+			isSubmitted: false,
 		};
 	}
 
@@ -26,8 +27,13 @@ class App extends Component {
 
 	handleFormSubmit = async e => {
 		e.preventDefault();
+		console.log('submitted the form!');
 		await this.getLists();
-		this.getCurrentSelections();
+		await this.getCurrentSelections();
+		this.setState({
+			isSubmitted: true,
+		});
+		console.log(this.state);
 	};
 
 	handleFormChange = e => {
@@ -189,24 +195,9 @@ class App extends Component {
 						<span className="specialWord">{meal.strMeal}</span>, while watching{' '}
 						<span className="specialWord">{movie.title}</span>.
 					</h2>
-					<Link to="/search/recommendations/">Recommendations</Link>
-					<Link to="/search/groceries/">Groceries</Link>
-					<Link to="/search/recipes/">Recipes</Link>
-					<Route
-						path="/search/recommendations/"
-						render={props => (
-							<Recommendation
-								{...props}
-								onClick={this.shakeItUp}
-								selections={this.state.currentSelections}
-							/>
-						)}
-					/>
-					<Route
-						path="/search/groceries/"
-						render={props => <GroceryList {...props} drink={drink} meal={meal} />}
-					/>
-					<Route path="/search/recipes/" render={props => <Recipe {...props} drink={drink} meal={meal} />} />
+					<Link to="/results/recommendations/">Recommendations</Link>
+					<Link to="/results/groceries/">Groceries</Link>
+					<Link to="/results/recipes/">Recipes</Link>
 				</div>
 			);
 		}
@@ -216,43 +207,62 @@ class App extends Component {
 		return (
 			<Router>
 				<div className="App">
-					<Header />
-					<main>
-						<div className="wrapper">
-							<p>
-								With Fermented Films, pick an ingredient theme for the evening. Specify any dietary
-								restrictions and we'll curate a meal, drink, and movie combination around your
-								selections. Don't like one of the available options? Click "Shake it up!" and we'll find
-								another that suits your needs.
-							</p>
+					<Route path="/" exact component={Header} />
+
+					<Route
+						path="/search/"
+						render={props => (
 							<Form
 								ingredient={this.state.ingredient}
 								ingredients={ingredients}
 								handleFormSubmit={this.handleFormSubmit}
 								handleFormChange={this.handleFormChange}
-							/>
-							{this.renderRecommendations()}
-						</div>
-					</main>
-					<Footer />
-					{/* <Route path="/" exact component={Main} />
-					<Route path="/search/" component={Start} />
-					<Route path="/results/" />
-					<Route
-						path="/results/recommendations/"
-						render={props => (
-							<Recommendation
-								{...props}
-								onClick={this.shakeItUp}
-								selections={this.state.currentSelections}
+								isSubmitted={this.state.isSubmitted}
 							/>
 						)}
 					/>
-					<Route
-						path="/results/groceries/"
-						render={props => <GroceryList {...props} drink={drink} meal={meal} />}
-					/>
-					<Route path="/results/recipes/" render={props => <Recipe {...props} drink={drink} meal={meal} />} /> */}
+
+					{this.state.currentSelections.length !== 0 ? (
+						<>
+							<Route
+								path="/results/"
+								render={props => (
+									<Results {...props} currentSelections={this.state.currentSelections} />
+								)}
+							/>
+							<Route
+								path="/results/recommendations/"
+								render={props => (
+									<Recommendation
+										{...props}
+										onClick={this.shakeItUp}
+										selections={this.state.currentSelections}
+									/>
+								)}
+							/>
+							<Route
+								path="/results/groceries/"
+								render={props => (
+									<GroceryList
+										{...props}
+										drink={this.state.currentSelections[0]}
+										meal={this.state.currentSelections[1]}
+									/>
+								)}
+							/>
+							<Route
+								path="/results/recipes/"
+								render={props => (
+									<Recipe
+										{...props}
+										drink={this.state.currentSelections[0]}
+										meal={this.state.currentSelections[1]}
+									/>
+								)}
+							/>
+						</>
+					) : null}
+					<Footer />
 				</div>
 			</Router>
 		);

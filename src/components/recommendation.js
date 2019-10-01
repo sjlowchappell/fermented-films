@@ -7,7 +7,7 @@ function Recommendation({ selections, onClick }) {
 	const movie = selections[2];
 	const posterPath = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 	return (
-		<div>
+		<div className="wrapper">
 			<div className="recommendation-container">
 				{/* Drink Info: */}
 				<div className="recommendation">

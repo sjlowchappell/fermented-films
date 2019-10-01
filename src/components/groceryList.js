@@ -18,7 +18,7 @@ function GroceryList({ drink, meal }) {
 	const mealIngredients = getIngredientArray(meal, 20);
 
 	return (
-		<div>
+		<div className="wrapper">
 			<h2>Grocery List:</h2>
 			<div className="groceryList">
 				<h4>For your drink: {drink.strDrink}</h4>
