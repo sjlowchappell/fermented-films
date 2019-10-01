@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import axios from 'axios';
+import ScrollToTop from './components/ScrollToTop';
 import Header from './components/header';
 import Form from './components/form';
 import Results from './components/results';
@@ -235,70 +236,72 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<div className="App">
-					{/* Start at home with just the Header and Footer showing */}
-					<Route path="/" component={Header} />
+				<ScrollToTop>
+					<div className="App">
+						{/* Start at home with just the Header and Footer showing */}
+						<Route path="/" component={Header} />
 
-					{/* Display the Form when the Get Started link is clicked in the header */}
-					<Route
-						path="/search/"
-						render={props => (
-							<Form
-								{...props}
-								ingredient={this.state.ingredient}
-								ingredients={ingredients}
-								handleFormSubmit={this.handleFormSubmit}
-								handleFormChange={this.handleFormChange}
-								isSubmitted={this.state.isSubmitted}
-							/>
+						{/* Display the Form when the Get Started link is clicked in the header */}
+						<Route
+							path="/search/"
+							render={props => (
+								<Form
+									{...props}
+									ingredient={this.state.ingredient}
+									ingredients={ingredients}
+									handleFormSubmit={this.handleFormSubmit}
+									handleFormChange={this.handleFormChange}
+									isSubmitted={this.state.isSubmitted}
+								/>
+							)}
+						/>
+
+						{/* If this form is submitted, render the results. Otherwise, Redirect to the home page */}
+						{this.state.isSubmitted ? (
+							<>
+								<Route
+									path="/results/"
+									render={props => (
+										<Results {...props} currentSelections={this.state.currentSelections} />
+									)}
+								/>
+								<Route
+									path="/results/recommendations/"
+									render={props => (
+										<Recommendation
+											{...props}
+											onClick={this.shakeItUp}
+											selections={this.state.currentSelections}
+										/>
+									)}
+								/>
+								<Route
+									path="/results/groceries/"
+									render={props => (
+										<GroceryList
+											{...props}
+											drink={this.state.currentSelections[0]}
+											meal={this.state.currentSelections[1]}
+										/>
+									)}
+								/>
+								<Route
+									path="/results/recipes/"
+									render={props => (
+										<Recipe
+											{...props}
+											drink={this.state.currentSelections[0]}
+											meal={this.state.currentSelections[1]}
+										/>
+									)}
+								/>
+							</>
+						) : (
+							<Redirect to="/" />
 						)}
-					/>
-
-					{/* If this form is submitted, render the results. Otherwise, Redirect to the home page */}
-					{this.state.isSubmitted ? (
-						<>
-							<Route
-								path="/results/"
-								render={props => (
-									<Results {...props} currentSelections={this.state.currentSelections} />
-								)}
-							/>
-							<Route
-								path="/results/recommendations/"
-								render={props => (
-									<Recommendation
-										{...props}
-										onClick={this.shakeItUp}
-										selections={this.state.currentSelections}
-									/>
-								)}
-							/>
-							<Route
-								path="/results/groceries/"
-								render={props => (
-									<GroceryList
-										{...props}
-										drink={this.state.currentSelections[0]}
-										meal={this.state.currentSelections[1]}
-									/>
-								)}
-							/>
-							<Route
-								path="/results/recipes/"
-								render={props => (
-									<Recipe
-										{...props}
-										drink={this.state.currentSelections[0]}
-										meal={this.state.currentSelections[1]}
-									/>
-								)}
-							/>
-						</>
-					) : (
-						<Redirect to="/" />
-					)}
-					<Footer />
-				</div>
+						<Footer />
+					</div>
+				</ScrollToTop>
 			</Router>
 		);
 	}
