@@ -11,7 +11,10 @@ function Header(props) {
 			<div className="wrapper">
 				<h1>Fermented Films</h1>
 				<p>One stop shop for a curated evening based on one ingredient.</p>
-				<Link to="/search">Get Started</Link>
+
+				<Link to="/search">
+					<button>Get Started &gt;&gt;&gt;</button>
+				</Link>
 			</div>
 		</header>
 	) : (

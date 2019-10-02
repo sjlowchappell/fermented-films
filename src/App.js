@@ -54,14 +54,14 @@ const ingredients = [
 		name: 'milk',
 		picture: milk,
 	},
-	{
-		name: 'wine',
-		picture: wine,
-	},
-	{
-		name: 'sugar',
-		picture: sugar,
-	},
+	// {
+	// 	name: 'wine',
+	// 	picture: wine,
+	// },
+	// {
+	// 	name: 'sugar',
+	// 	picture: sugar,
+	// },
 ];
 
 class App extends Component {

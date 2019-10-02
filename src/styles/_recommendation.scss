@@ -5,9 +5,9 @@
 }
 
 .recommendation-container > * {
-	max-width: 40%;
+	max-width: 48%;
 	padding: 10px;
-	flex: 1 0 20%;
+	flex: 1 0 auto;
 	background: darken($background-color, 20);
 }
 
@@ -15,7 +15,8 @@
 	display: flex;
 	align-items: center;
 	background: darken($background-color, 20);
-	margin: 20px 0px;
+	margin: 20px 10px;
+	// padding: 10px;
 }
 .movie-recommendation > * {
 	padding: 20px;
