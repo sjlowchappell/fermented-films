@@ -6,9 +6,11 @@
 
 .recommendation-container > * {
 	max-width: 48%;
-	padding: 10px;
+	padding: 30px 10px;
 	flex: 1 0 auto;
-	background: darken($background-color, 20);
+	background: linear-gradient(45deg, $background-color, darken($background-color, 20));
+	box-shadow: 0px 10px 15px darken($background-color, 20);
+	border-radius: 10px;
 }
 
 .movie-recommendation {
@@ -17,6 +19,9 @@
 	background: darken($background-color, 20);
 	margin: 20px 10px;
 	// padding: 10px;
+	background: linear-gradient(45deg, $background-color, darken($background-color, 20));
+	box-shadow: 0px 10px 15px darken($background-color, 20);
+	border-radius: 10px;
 }
 .movie-recommendation > * {
 	padding: 20px;
