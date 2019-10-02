@@ -1,16 +1,21 @@
 .recommendation-container {
 	display: flex;
+	justify-content: space-around;
+	margin: 20px 0px;
 }
 
 .recommendation-container > * {
-	width: 50%;
+	max-width: 40%;
 	padding: 10px;
-	flex: 1 0 auto;
+	flex: 1 0 20%;
+	background: darken($background-color, 20);
 }
 
 .movie-recommendation {
 	display: flex;
 	align-items: center;
+	background: darken($background-color, 20);
+	margin: 20px 0px;
 }
 .movie-recommendation > * {
 	padding: 20px;
