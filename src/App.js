@@ -18,8 +18,8 @@ import water from './assets/water.jpg';
 import ginger from './assets/ginger.jpg';
 import strawberry from './assets/strawberry.jpg';
 import milk from './assets/milk.jpg';
-import wine from './assets/wine.jpg';
-import sugar from './assets/sugar.jpg';
+// import wine from './assets/wine.jpg';
+// import sugar from './assets/sugar.jpg';
 
 const ingredients = [
 	{
