@@ -92,6 +92,7 @@ class App extends Component {
 		e.preventDefault();
 		await this.getLists();
 		await this.getCurrentSelections();
+		console.log(this.state.currentSelections);
 		this.setState({
 			isSubmitted: true,
 		});
@@ -336,6 +337,7 @@ class App extends Component {
 												20,
 											)}
 											instructions={this.state.currentSelections[1].strInstructions}
+											movie={this.state.currentSelections[1].strYoutube}
 										/>
 									)}
 								/>

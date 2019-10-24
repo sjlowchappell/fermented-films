@@ -17,11 +17,11 @@ function Movie({ movie, onClick }) {
 					<p>Run time: {movie.runtime} minutes</p>
 					<p>DESCRIPTION: {movie.overview}</p>
 					<p>Genres:</p>
-					{/* <ul>
-					{movie.genres.map(genre => {
-						return <li key={uuidv4()}>{genre.name}</li>;
-					})}
-				</ul> */}
+					<ul>
+						{movie.genres.map(genre => {
+							return <li key={uuidv4()}>{genre.name}</li>;
+						})}
+					</ul>
 					<button onClick={onClick} data-list="movieOptions" value="2">
 						Shake it Up!
 					</button>
