@@ -9,6 +9,8 @@ import Results from './components/results';
 import Recommendation from './components/recommendation';
 import GroceryList from './components/groceryList';
 import Recipe from './components/recipe';
+import NewRecipe from './components/newRecipe';
+import Movie from './components/movie';
 import Footer from './components/footer';
 import lime from './assets/lime.jpg';
 import lemon from './assets/lemon.jpg';
@@ -72,6 +74,18 @@ class App extends Component {
 			isSubmitted: false,
 		};
 	}
+	getIngredientArray = (food, num) => {
+		const ingredientArray = [];
+		for (let i = 1; i <= num; i++) {
+			if (food[`strIngredient${i}`] !== '' && food[`strIngredient${i}`] !== null) {
+				ingredientArray.push({
+					measure: food[`strMeasure${i}`],
+					name: food[`strIngredient${i}`],
+				});
+			}
+		}
+		return ingredientArray;
+	};
 
 	// Form related functions:
 	handleFormSubmit = async e => {
@@ -292,6 +306,46 @@ class App extends Component {
 											{...props}
 											drink={this.state.currentSelections[0]}
 											meal={this.state.currentSelections[1]}
+										/>
+									)}
+								/>
+								<Route
+									path="/results/drink/"
+									render={props => (
+										<NewRecipe
+											{...props}
+											name={this.state.currentSelections[0].strDrink}
+											image={this.state.currentSelections[0].strDrinkThumb}
+											ingredientList={this.getIngredientArray(
+												this.state.currentSelections[0],
+												15,
+											)}
+											instructions={this.state.currentSelections[0].strInstructions}
+										/>
+									)}
+								/>
+								<Route
+									path="/results/meal/"
+									render={props => (
+										<NewRecipe
+											{...props}
+											name={this.state.currentSelections[1].strMeal}
+											image={this.state.currentSelections[1].strMealThumb}
+											ingredientList={this.getIngredientArray(
+												this.state.currentSelections[1],
+												20,
+											)}
+											instructions={this.state.currentSelections[1].strInstructions}
+										/>
+									)}
+								/>
+								<Route
+									path="/results/movie/"
+									render={props => (
+										<Movie
+											{...props}
+											onClick={this.shakeItUp}
+											movie={this.state.currentSelections[2]}
 										/>
 									)}
 								/>
