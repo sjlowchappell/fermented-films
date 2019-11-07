@@ -18,7 +18,7 @@ function Results({ currentSelections }) {
 
 			{/* links to navigate through the different results panes */}
 			<nav className="resultsNav">
-				<Link to="/results/recommendations/">Recommendations</Link>
+				<Link to="/results/recommendations/">All Recommendations</Link>
 				{/* <Link to="/results/groceries/">Groceries</Link>
 				<Link to="/results/recipes/">Recipes</Link> */}
 				<Link to="/results/drink/">Drink</Link>

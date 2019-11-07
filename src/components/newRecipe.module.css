@@ -1,0 +1,13 @@
+.image {
+	/* max-width: 300px; */
+	margin-right: 40px;
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.container > * {
+	flex: 1 0 40%;
+}
