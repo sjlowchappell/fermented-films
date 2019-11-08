@@ -70,7 +70,7 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			ingredient: ingredients[0],
+			ingredient: 'No ingredient selected',
 			isSubmitted: false,
 		};
 	}

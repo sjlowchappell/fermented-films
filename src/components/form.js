@@ -34,7 +34,7 @@ function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isS
 									<div>
 										<img src={ingredient.picture} alt="" />
 									</div>
-									<p>{ingredient.name}</p>
+									{/* <p>{ingredient.name}</p> */}
 								</label>
 							</div>
 						);
@@ -42,6 +42,9 @@ function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isS
 				</div>
 
 				{/* button submits form */}
+				<p className="ingredientSelection">
+					Ingredient Theme Selection: <span className="specialWord">{currentlySelectedIngredient}</span>
+				</p>
 				<button onClick={handleFormSubmit}>Submit</button>
 			</form>
 		</main>

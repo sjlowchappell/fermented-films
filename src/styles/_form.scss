@@ -29,10 +29,26 @@ form {
 	label {
 		background: darken($background-color, 20);
 		margin: 5px;
-		padding: 10px;
+		padding: 15px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		border-radius: 100%;
+		img {
+			border-radius: 100%;
+			display: block;
+		}
+		p {
+			margin: 0;
+		}
+	}
+}
+
+.ingredientSelection {
+	margin: 50px 0px 20px 0px;
+	font-size: 2.5rem;
+	.specialWord {
+		text-transform: capitalize;
 	}
 }
