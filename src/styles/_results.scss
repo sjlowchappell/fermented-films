@@ -1,6 +1,21 @@
 .resultsNav {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+	a:hover {
+		color: $text-color;
+	}
+}
+
+.subNav {
+	display: flex;
 	width: 60%;
 	justify-content: space-between;
-	margin: 0 auto;
+	margin: 20px auto;
+	& > * {
+		border-bottom: 2px solid $accent-color-yellow;
+		&:hover {
+			border-bottom: 2px solid $text-color;
+		}
+	}
 }
