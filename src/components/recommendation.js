@@ -11,57 +11,30 @@ function Recommendation({ selections, onClick }) {
 			<div className="recommendation-container">
 				{/* Drink Info: */}
 				<div className="recommendation">
-					<div>
+					<div className="recommendationCircle">
 						<img src={drink.strDrinkThumb} alt="" />
 					</div>
-					<div>
-						<h4>{drink.strDrink}</h4>
-						<p>
-							Category: {drink.strAlcoholic}, {drink.strCategory}
-						</p>
-					</div>
+					<h4>{drink.strDrink}</h4>
 					<button onClick={onClick} data-list="drinkOptions" value="0">
 						Shake it Up!
 					</button>
 				</div>
-
-				{/* Meal Info: */}
 				<div className="recommendation">
-					<div>
+					<div className="recommendationCircle">
 						<img src={meal.strMealThumb} alt="" />
 					</div>
-					<div>
-						<h4>{meal.strMeal}</h4>
-						<p>{/* Category: {meal.strArea}, {meal.strCategory} */}</p>
-						<p>
-							Original Recipe: <a href={meal.strSource}>here</a>
-						</p>
-						<p>
-							Video instructions can be found <a href={meal.strYoutube}>here</a>
-						</p>
-					</div>
-					<button onClick={onClick} data-list="mealOptions" value="1">
+					<h4>{meal.strMeal}</h4>
+					<button onClick={onClick} data-list="mealOptions" value="0">
 						Shake it Up!
 					</button>
 				</div>
-			</div>
-			{/* Movie Info: */}
-			<div className="movie-recommendation">
-				<div>
-					<img src={posterPath} alt="" />
-				</div>
-				<div>
+
+				<div className="recommendation movieReco">
+					<div className="recommendationCircle">
+						<img src={posterPath} alt="" />
+					</div>
 					<h4>{movie.title}</h4>
-					<p>Release date: {movie.release_date}</p>
-					<p>Run time: {movie.runtime} minutes</p>
-					<p>DESCRIPTION: {movie.overview}</p>
-					<p>Genres:</p>
-					<ul>
-						{movie.genres.map(genre => {
-							return <li key={uuidv4()}>{genre.name}</li>;
-						})}
-					</ul>
-					<button onClick={onClick} data-list="movieOptions" value="2">
+					<button onClick={onClick} data-list="movieOptions" value="0">
 						Shake it Up!
 					</button>
 				</div>

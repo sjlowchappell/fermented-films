@@ -32,9 +32,8 @@ function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isS
 								/>
 								<label htmlFor={ingredient.name}>
 									<div>
-										<img src={ingredient.picture} alt="" />
+										<img src={ingredient.picture} alt={ingredient.name} />
 									</div>
-									{/* <p>{ingredient.name}</p> */}
 								</label>
 							</div>
 						);
