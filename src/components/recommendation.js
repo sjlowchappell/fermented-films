@@ -1,5 +1,4 @@
 import React from 'react';
-import uuidv4 from 'uuid/v4';
 
 function Recommendation({ selections, onClick }) {
 	const drink = selections[0];
@@ -10,6 +9,7 @@ function Recommendation({ selections, onClick }) {
 		<div className="wrapper">
 			<div className="recommendation-container">
 				{/* Drink Info: */}
+
 				<div className="recommendation">
 					<div className="recommendationCircle">
 						<img src={drink.strDrinkThumb} alt="" />
@@ -19,25 +19,25 @@ function Recommendation({ selections, onClick }) {
 						Shake it Up!
 					</button>
 				</div>
+
 				<div className="recommendation">
 					<div className="recommendationCircle">
 						<img src={meal.strMealThumb} alt="" />
 					</div>
 					<h4>{meal.strMeal}</h4>
-					<button onClick={onClick} data-list="mealOptions" value="0">
+					<button onClick={onClick} data-list="mealOptions" value="1">
 						Shake it Up!
 					</button>
 				</div>
-
-				<div className="recommendation movieReco">
-					<div className="recommendationCircle">
-						<img src={posterPath} alt="" />
-					</div>
-					<h4>{movie.title}</h4>
-					<button onClick={onClick} data-list="movieOptions" value="0">
-						Shake it Up!
-					</button>
+			</div>
+			<div className="recommendation">
+				<div className="recommendationCircle">
+					<img src={posterPath} alt="" />
 				</div>
+				<h4>{movie.title}</h4>
+				<button onClick={onClick} data-list="movieOptions" value="2">
+					Shake it Up!
+				</button>
 			</div>
 		</div>
 	);
