@@ -8,12 +8,12 @@ function Movie({ movie, onClick }) {
 		<div className="wrapper">
 			<div>
 				{/* Movie Info: */}
+				<h2>{movie.title}</h2>
 				<div className="movie-recommendation">
 					<div className="moviePoster">
 						<img src={posterPath} alt="" />
 					</div>
 					<div>
-						<h4>{movie.title}</h4>
 						<p>Release date: {movie.release_date}</p>
 						<p>Run time: {movie.runtime} minutes</p>
 						<p>Genres:</p>

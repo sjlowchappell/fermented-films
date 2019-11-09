@@ -11,9 +11,19 @@ function Results({ currentSelections }) {
 		<div className="wrapper">
 			{/* info about current selections */}
 			<h2>
-				Tonight You'll be drinking a <span className="specialWord">{drink.strDrink}</span>, eating{' '}
-				<span className="specialWord">{meal.strMeal}</span>, while watching{' '}
-				<span className="specialWord">{movie.title}</span>.
+				Tonight You'll be drinking a{' '}
+				<Link className="specialWord" to="/results/drink/">
+					{drink.strDrink}
+				</Link>
+				, eating{' '}
+				<Link className="specialWord" to="/results/meal/">
+					{meal.strMeal}
+				</Link>
+				, while watching{' '}
+				<Link className="specialWord" to="/results/movie/">
+					{movie.title}
+				</Link>
+				.
 			</h2>
 
 			{/* links to navigate through the different results panes */}
