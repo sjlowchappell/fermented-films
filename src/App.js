@@ -21,6 +21,8 @@ import milk from './assets/milk.jpg';
 // import wine from './assets/wine.jpg';
 // import sugar from './assets/sugar.jpg';
 
+// so far I know that there are movie options for comedy and drama for all ingredients. Would be nice to pick one more genre filter option
+
 const ingredients = [
 	{
 		name: 'lime',
@@ -63,12 +65,7 @@ const ingredients = [
 	// 	picture: sugar,
 	// },
 ];
-const genres = [
-	{ name: 'comedy', id: 35 },
-	{ name: 'drama', id: 18 },
-	{ name: 'action', id: 28 },
-	{ name: 'any!', id: null },
-];
+const genres = [{ name: 'comedy', id: 35 }, { name: 'drama', id: 18 }, { name: 'any!', id: null }];
 
 class App extends Component {
 	constructor() {
@@ -158,6 +155,7 @@ class App extends Component {
 		// Filter movies to remove anything that doesn't have a poster image
 		// const filteredMovies = listData[2].data.results.filter(movie => movie.poster_path !== null);
 		const filteredMovies = this.filterMovies(listData[2].data.results);
+		console.log(filteredMovies);
 
 		// Set state based on new lists of drinks, meals, and movies
 		this.setState({
