@@ -120,6 +120,12 @@ class App extends Component {
 		);
 	};
 
+	filterMovies = (list, selectedGenre) => {
+		return list.filter(movie => {
+			return movie.genre_ids.some(genre => genre === selectedGenre);
+		});
+	};
+
 	// Get lists of potential drinks, meals, and movies based on ingredient selection
 	getLists = async () => {
 		// The following gets lists of movies, drinks, and meals basd on ingredient selection
@@ -150,6 +156,8 @@ class App extends Component {
 
 		// Filter movies to remove anything that doesn't have a poster image
 		const filteredMovies = listData[2].data.results.filter(movie => movie.poster_path !== null);
+		const genreFiltered = this.filterMovies(filteredMovies, 18);
+		console.log(genreFiltered);
 
 		// Set state based on new lists of drinks, meals, and movies
 		this.setState({
