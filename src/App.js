@@ -63,12 +63,19 @@ const ingredients = [
 	// 	picture: sugar,
 	// },
 ];
+const genres = [
+	{ name: 'comedy', id: 35 },
+	{ name: 'drama', id: 18 },
+	{ name: 'action', id: 28 },
+	{ name: 'any!', id: null },
+];
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
 			ingredient: 'No ingredient selected',
+			genre: 'No genre selected',
 			isSubmitted: false,
 		};
 	}
@@ -269,6 +276,8 @@ class App extends Component {
 									{...props}
 									ingredient={this.state.ingredient}
 									ingredients={ingredients}
+									genre={this.state.genre}
+									genres={genres}
 									handleFormSubmit={this.handleFormSubmit}
 									handleFormChange={this.handleFormChange}
 									isSubmitted={this.state.isSubmitted}

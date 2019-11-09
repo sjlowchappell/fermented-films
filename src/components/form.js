@@ -2,8 +2,9 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 import { Redirect } from 'react-router-dom';
 
-function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isSubmitted }) {
+function Form({ ingredient, ingredients, genre, genres, handleFormSubmit, handleFormChange, isSubmitted }) {
 	const currentlySelectedIngredient = ingredient;
+	const currentlySelectedGenre = genre;
 	return (
 		<main className="wrapper">
 			{/* if the form has been submitted, redirect to results */}
@@ -40,10 +41,34 @@ function Form({ ingredient, ingredients, handleFormSubmit, handleFormChange, isS
 					})}
 				</div>
 
-				{/* button submits form */}
+				<p>Do you have a preferred movie genre?</p>
+				<div className="genresGallery">
+					{genres.map(genre => {
+						return (
+							<div key={uuidv4()}>
+								<input
+									type="radio"
+									name="genre"
+									id={genre.name}
+									value={genre.name}
+									onChange={handleFormChange}
+									checked={currentlySelectedGenre === genre.name}
+								/>
+								<label htmlFor={genre.name}>{genre.name}</label>
+							</div>
+						);
+					})}
+				</div>
+
 				<p className="ingredientSelection">
 					Ingredient Theme Selection: <span className="specialWord">{currentlySelectedIngredient}</span>
 				</p>
+
+				<p className="ingredientSelection">
+					Movie Genre Selection: <span className="specialWord">{currentlySelectedGenre}</span>
+				</p>
+
+				{/* button submits form */}
 				<button onClick={handleFormSubmit}>Submit</button>
 			</form>
 		</main>
