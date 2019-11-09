@@ -25,9 +25,11 @@ function Recipe({ name, image, ingredientList, instructions, onClick, list, valu
 			</div>
 			<p>Instructions:</p>
 			<p>{instructions}</p>
-			<button onClick={onClick} data-list={list} value={value}>
-				Shake it Up!
-			</button>
+			<div className="buttonBox">
+				<button onClick={onClick} data-list={list} value={value}>
+					Shake it Up!
+				</button>
+			</div>
 		</div>
 	);
 }

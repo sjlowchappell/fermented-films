@@ -38,9 +38,11 @@ function Movie({ movie, onClick }) {
 				<div>
 					<p className="specialWord">Description:</p>
 					<p>{movie.overview}</p>
-					<button onClick={onClick} data-list="movieOptions" value="2">
-						Shake it Up!
-					</button>
+					<div className="buttonBox">
+						<button onClick={onClick} data-list="movieOptions" value="2">
+							Shake it Up!
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
