@@ -90,7 +90,6 @@ class App extends Component {
 		e.preventDefault();
 		await this.getLists();
 		await this.getCurrentSelections();
-		console.log(this.state.currentSelections);
 		this.setState({
 			isSubmitted: true,
 		});
@@ -301,6 +300,8 @@ class App extends Component {
 											)}
 											instructions={this.state.currentSelections[0].strInstructions}
 											onClick={this.shakeItUp}
+											list={'drinkOptions'}
+											value={'0'}
 										/>
 									)}
 								/>
@@ -317,6 +318,8 @@ class App extends Component {
 											)}
 											instructions={this.state.currentSelections[1].strInstructions}
 											onClick={this.shakeItUp}
+											list={'mealOptions'}
+											value={'1'}
 										/>
 									)}
 								/>

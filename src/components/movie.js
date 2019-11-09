@@ -27,7 +27,7 @@ function Movie({ movie, onClick }) {
 				<div>
 					<p>Description:</p>
 					<p>{movie.overview}</p>
-					<button onClick={onClick} data-list="drinkOptions" value="0">
+					<button onClick={onClick} data-list="movieOptions" value="2">
 						Shake it Up!
 					</button>
 				</div>
