@@ -14,18 +14,29 @@ function Movie({ movie, onClick }) {
 						<img src={posterPath} alt="" />
 					</div>
 					<div>
-						<p>Release date: {movie.release_date}</p>
-						<p>Run time: {movie.runtime} minutes</p>
-						<p>Genres:</p>
+						<p>
+							<span className="specialWord">Release date:</span> {movie.release_date}
+						</p>
+						<p>
+							<span className="specialWord">Run time:</span> {movie.runtime} minutes
+						</p>
+						<p>
+							<span className="specialWord">Popularity:</span> {movie.popularity} / 100
+						</p>
+						<p className="specialWord">Genres:</p>
 						<ul>
 							{movie.genres.map(genre => {
-								return <li key={uuidv4()}>{genre.name}</li>;
+								return (
+									<li key={uuidv4()} className="genreList">
+										{genre.name}
+									</li>
+								);
 							})}
 						</ul>
 					</div>
 				</div>
 				<div>
-					<p>Description:</p>
+					<p className="specialWord">Description:</p>
 					<p>{movie.overview}</p>
 					<button onClick={onClick} data-list="movieOptions" value="2">
 						Shake it Up!
