@@ -7,9 +7,7 @@ import Header from './components/header';
 import Form from './components/form';
 import Results from './components/results';
 import Recommendation from './components/recommendation';
-import GroceryList from './components/groceryList';
 import Recipe from './components/recipe';
-import NewRecipe from './components/newRecipe';
 import Movie from './components/movie';
 import Footer from './components/footer';
 import lime from './assets/lime.jpg';
@@ -291,29 +289,9 @@ class App extends Component {
 									)}
 								/>
 								<Route
-									path="/results/groceries/"
-									render={props => (
-										<GroceryList
-											{...props}
-											drink={this.state.currentSelections[0]}
-											meal={this.state.currentSelections[1]}
-										/>
-									)}
-								/>
-								<Route
-									path="/results/recipes/"
-									render={props => (
-										<Recipe
-											{...props}
-											drink={this.state.currentSelections[0]}
-											meal={this.state.currentSelections[1]}
-										/>
-									)}
-								/>
-								<Route
 									path="/results/drink/"
 									render={props => (
-										<NewRecipe
+										<Recipe
 											{...props}
 											name={this.state.currentSelections[0].strDrink}
 											image={this.state.currentSelections[0].strDrinkThumb}
@@ -328,7 +306,7 @@ class App extends Component {
 								<Route
 									path="/results/meal/"
 									render={props => (
-										<NewRecipe
+										<Recipe
 											{...props}
 											name={this.state.currentSelections[1].strMeal}
 											image={this.state.currentSelections[1].strMealThumb}
