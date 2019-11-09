@@ -1,0 +1,12 @@
+.movie-recommendation {
+	display: flex;
+	justify-content: space-between;
+}
+
+.movie-recommendation > * {
+	flex: 1 0 40%;
+}
+
+.moviePoster {
+	margin-right: 30px;
+}

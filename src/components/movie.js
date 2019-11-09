@@ -6,23 +6,28 @@ function Movie({ movie, onClick }) {
 	const posterPath = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 	return (
 		<div className="wrapper">
-			<div className="movie-recommendation">
+			<div>
 				{/* Movie Info: */}
-				<div>
-					<img src={posterPath} alt="" />
+				<div className="movie-recommendation">
+					<div className="moviePoster">
+						<img src={posterPath} alt="" />
+					</div>
+					<div>
+						<h4>{movie.title}</h4>
+						<p>Release date: {movie.release_date}</p>
+						<p>Run time: {movie.runtime} minutes</p>
+						<p>Genres:</p>
+						<ul>
+							{movie.genres.map(genre => {
+								return <li key={uuidv4()}>{genre.name}</li>;
+							})}
+						</ul>
+					</div>
 				</div>
 				<div>
-					<h4>{movie.title}</h4>
-					<p>Release date: {movie.release_date}</p>
-					<p>Run time: {movie.runtime} minutes</p>
-					<p>DESCRIPTION: {movie.overview}</p>
-					<p>Genres:</p>
-					<ul>
-						{movie.genres.map(genre => {
-							return <li key={uuidv4()}>{genre.name}</li>;
-						})}
-					</ul>
-					<button onClick={onClick} data-list="movieOptions" value="2">
+					<p>Description:</p>
+					<p>{movie.overview}</p>
+					<button onClick={onClick} data-list="drinkOptions" value="0">
 						Shake it Up!
 					</button>
 				</div>

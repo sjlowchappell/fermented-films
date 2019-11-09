@@ -300,6 +300,7 @@ class App extends Component {
 												15,
 											)}
 											instructions={this.state.currentSelections[0].strInstructions}
+											onClick={this.shakeItUp}
 										/>
 									)}
 								/>
@@ -315,7 +316,7 @@ class App extends Component {
 												20,
 											)}
 											instructions={this.state.currentSelections[1].strInstructions}
-											movie={this.state.currentSelections[1].strYoutube}
+											onClick={this.shakeItUp}
 										/>
 									)}
 								/>

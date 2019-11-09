@@ -2,7 +2,7 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 import recipeStyles from './newRecipe.module.css';
 
-function Recipe({ name, image, ingredientList, instructions, movie }) {
+function Recipe({ name, image, ingredientList, instructions, onClick }) {
 	return (
 		<div className="wrapper">
 			<h2>{name}</h2>
@@ -25,6 +25,9 @@ function Recipe({ name, image, ingredientList, instructions, movie }) {
 			</div>
 			<p>Instructions:</p>
 			<p>{instructions}</p>
+			<button onClick={onClick} data-list="drinkOptions" value="0">
+				Shake it Up!
+			</button>
 		</div>
 	);
 }
