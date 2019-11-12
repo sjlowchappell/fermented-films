@@ -6,9 +6,10 @@ function Recipe({ name, image, ingredientList, instructions, onClick, list, valu
 	return (
 		<div className="wrapper">
 			<h2>{name}</h2>
+			{/* Set image next to ingredient list */}
 			<div className={recipeStyles.container}>
 				<div className={recipeStyles.image}>
-					<img src={image} alt="" />
+					<img src={image} alt={image} />
 				</div>
 				<div>
 					<p>Ingredients:</p>
@@ -23,7 +24,7 @@ function Recipe({ name, image, ingredientList, instructions, onClick, list, valu
 					</ul>
 				</div>
 			</div>
-			<p>Instructions:</p>
+			<p className="specialWord">Instructions:</p>
 			<p>{instructions}</p>
 			<div className="buttonBox">
 				<button onClick={onClick} data-list={list} value={value}>
@@ -35,33 +36,3 @@ function Recipe({ name, image, ingredientList, instructions, onClick, list, valu
 }
 
 export default Recipe;
-
-/*
-
-{movie ? (
-	// Got this code from https://medium.com/@kevinsimper/full-width-youtube-embed-with-react-js-responsive-embed-509de7e7c3bf
-	<div
-		className="video"
-		style={{
-			position: 'relative',
-			paddingBottom: '56.25%' /* 16:9 ,
-			paddingTop: 25,
-			height: 0,
-		}}
-	>
-		<h4>Video to follow recipe:</h4>
-		<iframe
-			title="recipe video"
-			style={{
-				position: 'absolute',
-				top: 0,
-				left: 0,
-				width: '100%',
-				height: '100%',
-			}}
-			src={movie}
-			frameBorder="0"
-		/>
-	</div>
-) : null}
-*/
