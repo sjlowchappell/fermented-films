@@ -212,18 +212,13 @@ class App extends Component {
 					name: food[`strIngredient${i}`],
 				});
 			}
+			// check if I should include a else: break statement here
 		}
 		return ingredientArray;
 	};
 
 	// Get a new drink, meal, or movie
 	shakeItUp = async e => {
-		// set parameters for movie
-		const movieParams = {
-			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
-			language: 'en-US',
-		};
-
 		// get index value based on value set on original option
 		const index = parseInt(e.target.value);
 
@@ -232,7 +227,13 @@ class App extends Component {
 		const dataRequestOptions = [
 			{ url: 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?', params: { i: newOption.idDrink } },
 			{ url: 'https://www.themealdb.com/api/json/v1/1/lookup.php?', params: { i: newOption.idMeal } },
-			{ url: `https://api.themoviedb.org/3/movie/${newOption.id}`, params: movieParams },
+			{
+				url: `https://api.themoviedb.org/3/movie/${newOption.id}`,
+				params: {
+					api_key: '78bc17b4e102a33a55c252cd4873cbe7',
+					language: 'en-US',
+				},
+			},
 		];
 
 		// Make an ajax request to the appropriate endpoint based on index
