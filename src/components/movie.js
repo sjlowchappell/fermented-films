@@ -2,7 +2,6 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 
 function Movie({ movie, onClick }) {
-	console.log(movie);
 	const posterPath = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 	return (
 		<div className="wrapper">
@@ -11,7 +10,7 @@ function Movie({ movie, onClick }) {
 				<h2>{movie.title}</h2>
 				<div className="movie-recommendation">
 					<div className="moviePoster">
-						<img src={posterPath} alt="" />
+						<img src={posterPath} alt={`${movie.title} movie poster`} />
 					</div>
 					<div>
 						<p>
