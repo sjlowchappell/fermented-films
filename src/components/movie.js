@@ -2,29 +2,30 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 
 function Movie({ movie, onClick }) {
-	const posterPath = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+	const { title, poster_path, release_date, runtime, popularity, genres, overview } = movie;
+	const posterPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
 	return (
 		<div className="wrapper">
 			<div>
 				{/* Movie Info: */}
-				<h2>{movie.title}</h2>
+				<h2>{title}</h2>
 				<div className="movie-recommendation">
 					<div className="moviePoster">
-						<img src={posterPath} alt={`${movie.title} movie poster`} />
+						<img src={posterPath} alt={`${title} movie poster`} />
 					</div>
 					<div>
 						<p>
-							<span className="specialWord">Release date:</span> {movie.release_date}
+							<span className="specialWord">Release date:</span> {release_date}
 						</p>
 						<p>
-							<span className="specialWord">Run time:</span> {movie.runtime} minutes
+							<span className="specialWord">Run time:</span> {runtime} minutes
 						</p>
 						<p>
-							<span className="specialWord">Popularity:</span> {movie.popularity} / 100
+							<span className="specialWord">Popularity:</span> {popularity} / 100
 						</p>
 						<p className="specialWord">Genres:</p>
 						<ul>
-							{movie.genres.map(genre => {
+							{genres.map(genre => {
 								return (
 									<li key={uuidv4()} className="genreList">
 										{genre.name}
@@ -36,7 +37,7 @@ function Movie({ movie, onClick }) {
 				</div>
 				<div>
 					<p className="specialWord">Description:</p>
-					<p>{movie.overview}</p>
+					<p>{overview}</p>
 					<div className="buttonBox">
 						<button onClick={onClick} data-list="movieOptions" value="2">
 							Shake it Up!
