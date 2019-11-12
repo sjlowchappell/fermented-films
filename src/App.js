@@ -152,7 +152,9 @@ class App extends Component {
 
 	// filters movies to ensure there is a poster path, and filters by genre selection
 	filterMovies = list => {
+		// extract genre object by comparing currently selected genre to the set data list of genres (needed to pair genreID with genre name for filtering purposes)
 		const genreObj = genres.find(genre => genre.name === this.state.genre);
+		// If a genre filter has been selected, filter by genre and poster path. Otherwise, just filter out movies with no poster path
 		if (genreObj.id !== null) {
 			return list
 				.filter(movie => movie.poster_path !== null)
@@ -166,16 +168,16 @@ class App extends Component {
 
 	// Get currently selected drink, meal, and movie based on lists
 	getCurrentSelections = async () => {
-		// Once the lists have been established, we select a current choice for movie, drink, and meal and save them in a newSelections array
-
-		// Set paramets for new api calls
+		// Once the lists have been set, we select a current choice for movie, drink, and meal and save them in a newSelections array
 		const newSelections = this.state.curatedLists.map(list => {
 			return this.chooseNewOption(list, list.length);
 		});
-		const movieParams = {
-			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
-			language: 'en-US',
-		};
+
+		// Set parameters for new api calls
+		// const movieParams = {
+		// 	api_key: '78bc17b4e102a33a55c252cd4873cbe7',
+		// 	language: 'en-US',
+		// };
 
 		// Create an array of urls and parameters to send to fetchDataForList
 		const selectionEndpoints = [
@@ -189,7 +191,10 @@ class App extends Component {
 			},
 			{
 				url: `https://api.themoviedb.org/3/movie/${newSelections[2].id}`,
-				params: movieParams,
+				params: {
+					api_key: '78bc17b4e102a33a55c252cd4873cbe7',
+					language: 'en-US',
+				},
 			},
 		];
 
