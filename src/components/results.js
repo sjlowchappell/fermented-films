@@ -1,12 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Results({ currentSelections }) {
-	// current drink, meal, and movie taken from props
-	const drink = currentSelections[0];
-	const meal = currentSelections[1];
-	const movie = currentSelections[2];
-
+function Results({ drink, meal, movie }) {
 	return (
 		<div className="wrapper">
 			{/* info about current selections */}

@@ -294,7 +294,12 @@ class App extends Component {
 								<Route
 									path="/results/"
 									render={props => (
-										<Results {...props} currentSelections={this.state.currentSelections} />
+										<Results
+											{...props}
+											drink={this.state.currentSelections[0]}
+											meal={this.state.currentSelections[1]}
+											movie={this.state.currentSelections[2]}
+										/>
 									)}
 								/>
 								<Route
