@@ -18,8 +18,6 @@ import water from './assets/water.jpg';
 import ginger from './assets/ginger.jpg';
 import strawberry from './assets/strawberry.jpg';
 import milk from './assets/milk.jpg';
-// import wine from './assets/wine.jpg';
-// import sugar from './assets/sugar.jpg';
 
 // so far I know that there are movie options for comedy and drama for all ingredients. Would be nice to pick one more genre filter option
 
@@ -279,9 +277,9 @@ class App extends Component {
 							render={props => (
 								<Form
 									{...props}
-									ingredient={this.state.ingredient}
+									currentlySelectedIngredient={this.state.ingredient}
 									ingredients={ingredients}
-									genre={this.state.genre}
+									currentlySelectedGenre={this.state.genre}
 									genres={genres}
 									handleFormSubmit={this.handleFormSubmit}
 									handleFormChange={this.handleFormChange}

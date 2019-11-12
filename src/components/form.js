@@ -2,9 +2,15 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 import { Redirect } from 'react-router-dom';
 
-function Form({ ingredient, ingredients, genre, genres, handleFormSubmit, handleFormChange, isSubmitted }) {
-	const currentlySelectedIngredient = ingredient;
-	const currentlySelectedGenre = genre;
+function Form({
+	currentlySelectedIngredient,
+	ingredients,
+	currentlySelectedGenre,
+	genres,
+	handleFormSubmit,
+	handleFormChange,
+	isSubmitted,
+}) {
 	return (
 		<main className="wrapper">
 			{/* if the form has been submitted, redirect to results */}
@@ -17,8 +23,9 @@ function Form({ ingredient, ingredients, genre, genres, handleFormSubmit, handle
 			</p>
 			<p>Pick an Ingredient Theme:</p>
 
-			{/* form to submit ingredient theme */}
+			{/* form to submit ingredient theme and movie genres */}
 			<form>
+				{/* Gallery of ingreident images serve as inputs for form */}
 				<div className="ingredientsGallery">
 					{ingredients.map(ingredient => {
 						return (
@@ -32,15 +39,14 @@ function Form({ ingredient, ingredients, genre, genres, handleFormSubmit, handle
 									checked={currentlySelectedIngredient === ingredient.name}
 								/>
 								<label htmlFor={ingredient.name}>
-									<div>
-										<img src={ingredient.picture} alt={ingredient.name} />
-									</div>
+									<img src={ingredient.picture} alt={ingredient.name} />
 								</label>
 							</div>
 						);
 					})}
 				</div>
 
+				{/* Genres as inputs for form */}
 				<p>Do you have a preferred movie genre?</p>
 				<div className="genresGallery">
 					{genres.map(genre => {
