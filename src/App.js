@@ -173,12 +173,6 @@ class App extends Component {
 			return this.chooseNewOption(list, list.length);
 		});
 
-		// Set parameters for new api calls
-		// const movieParams = {
-		// 	api_key: '78bc17b4e102a33a55c252cd4873cbe7',
-		// 	language: 'en-US',
-		// };
-
 		// Create an array of urls and parameters to send to fetchDataForList
 		const selectionEndpoints = [
 			{
