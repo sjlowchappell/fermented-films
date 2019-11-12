@@ -7,7 +7,7 @@ function Movie({ movie, onClick }) {
 	return (
 		<div className="wrapper">
 			<div>
-				{/* Movie Info: */}
+				{/* Movie Info, pair movie poster with movie details, followed by its description*/}
 				<h2>{title}</h2>
 				<div className="movie-recommendation">
 					<div className="moviePoster">
@@ -39,7 +39,7 @@ function Movie({ movie, onClick }) {
 					<p className="specialWord">Description:</p>
 					<p>{overview}</p>
 					<div className="buttonBox">
-						<button onClick={onClick} data-list="movieOptions" value="2">
+						<button onClick={onClick} value="2">
 							Shake it Up!
 						</button>
 					</div>

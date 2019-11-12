@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// sub-component to render each recommendation item as a circle with image and description with shake it up button
 function RecommendationItem({ type, image, name, value, onClick }) {
 	return (
 		<div className="recommendation">
@@ -11,13 +12,14 @@ function RecommendationItem({ type, image, name, value, onClick }) {
 				</div>
 				<h4>{name}</h4>
 			</Link>
-			<button onClick={onClick} data-list={`${type}Options`} value={value}>
+			<button onClick={onClick} value={value}>
 				Shake it Up!
 			</button>
 		</div>
 	);
 }
 
+// When displaying recommendations, set meal and drink next to each other, followed by movie
 function Recommendation({ drink, meal, movie, onClick }) {
 	const posterPath = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 	return (

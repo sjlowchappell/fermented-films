@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Results({ drink, meal, movie }) {
 	return (
 		<div className="wrapper">
-			{/* info about current selections */}
+			{/* info about current selections, with links to more info on each */}
 			<h2>
 				Tonight You'll be drinking a{' '}
 				<Link className="specialWord" to="/results/drink/">

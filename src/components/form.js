@@ -25,7 +25,7 @@ function Form({
 
 			{/* form to submit ingredient theme and movie genres */}
 			<form>
-				{/* Gallery of ingreident images serve as inputs for form */}
+				{/* Gallery of ingredient images serve as inputs for form */}
 				<div className="ingredientsGallery">
 					{ingredients.map(ingredient => {
 						return (

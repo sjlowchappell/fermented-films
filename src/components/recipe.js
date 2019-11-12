@@ -6,7 +6,7 @@ function Recipe({ name, image, ingredientList, instructions, onClick, list, valu
 	return (
 		<div className="wrapper">
 			<h2>{name}</h2>
-			{/* Set image next to ingredient list */}
+			{/* Set image next to ingredient list, followed by instructions*/}
 			<div className={recipeStyles.container}>
 				<div className={recipeStyles.image}>
 					<img src={image} alt={image} />
@@ -27,7 +27,7 @@ function Recipe({ name, image, ingredientList, instructions, onClick, list, valu
 			<p className="specialWord">Instructions:</p>
 			<p>{instructions}</p>
 			<div className="buttonBox">
-				<button onClick={onClick} data-list={list} value={value}>
+				<button onClick={onClick} value={value}>
 					Shake it Up!
 				</button>
 			</div>
