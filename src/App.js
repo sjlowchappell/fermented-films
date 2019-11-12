@@ -308,7 +308,9 @@ class App extends Component {
 										<Recommendation
 											{...props}
 											onClick={this.shakeItUp}
-											selections={this.state.currentSelections}
+											drink={this.state.currentSelections[0]}
+											meal={this.state.currentSelections[1]}
+											movie={this.state.currentSelections[2]}
 										/>
 									)}
 								/>
