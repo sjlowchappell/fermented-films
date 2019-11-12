@@ -7,7 +7,7 @@ function RecommendationItem({ type, image, name, value, onClick }) {
 			<Link to={`/results/${type}/`} className="recommendation">
 				<h3>Your {type}:</h3>
 				<div className="recommendationCircle">
-					<img src={image} alt={`Image of a ${name}`} />
+					<img src={image} alt={`${name}`} />
 				</div>
 				<h4>{name}</h4>
 			</Link>
