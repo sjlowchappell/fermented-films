@@ -74,29 +74,21 @@ class App extends Component {
 			isSubmitted: false,
 		};
 	}
-	getIngredientArray = (food, num) => {
-		const ingredientArray = [];
-		for (let i = 1; i <= num; i++) {
-			if (food[`strIngredient${i}`] !== '' && food[`strIngredient${i}`] !== null) {
-				ingredientArray.push({
-					measure: food[`strMeasure${i}`],
-					name: food[`strIngredient${i}`],
-				});
-			}
-		}
-		return ingredientArray;
-	};
-
 	// Form related functions:
+	// Submit form
 	handleFormSubmit = async e => {
 		e.preventDefault();
+		// get lists of drinks, meals, and movies
 		await this.getLists();
+		// Select a current drink, meal, and movie
 		await this.getCurrentSelections();
+		// Update form submission in state
 		this.setState({
 			isSubmitted: true,
 		});
 	};
 
+	// When there is a form change, update stay based on what input has been selected
 	handleFormChange = e => {
 		const key = e.target.name;
 		const value = e.target.value;
@@ -113,7 +105,7 @@ class App extends Component {
 		});
 	};
 
-	// returns results for a list of urls and parameters
+	// returns results for a list of urls and parameters (helpful when finding data for meals, drinks, and movies all at the same time)
 	fetchDataForList = list => {
 		return Promise.all(
 			list.map(item => {
@@ -122,10 +114,9 @@ class App extends Component {
 		);
 	};
 
-	// Get lists of potential drinks, meals, and movies based on ingredient selection
+	// Get lists of potential drinks, meals, and movies based on ingredient and genre selections
 	getLists = async () => {
-		// The following gets lists of movies, drinks, and meals basd on ingredient selection
-		// Set parameters for 3 different api calls
+		// Set parameters for all 3 different api calls
 		const ingredientParams = { i: this.state.ingredient };
 		const movieParams = {
 			api_key: '78bc17b4e102a33a55c252cd4873cbe7',
@@ -150,10 +141,8 @@ class App extends Component {
 		// Make api calls based upon passed endpoints
 		const listData = await this.fetchDataForList(listEndpoints);
 
-		// Filter movies to remove anything that doesn't have a poster image
-		// const filteredMovies = listData[2].data.results.filter(movie => movie.poster_path !== null);
+		// Filter movies by genre selection and to remove anything that doesn't have a poster image
 		const filteredMovies = this.filterMovies(listData[2].data.results);
-		console.log(filteredMovies);
 
 		// Set state based on new lists of drinks, meals, and movies
 		this.setState({
@@ -211,6 +200,21 @@ class App extends Component {
 		this.setState({
 			currentSelections: [selectionData[0].data.drinks[0], selectionData[1].data.meals[0], selectionData[2].data],
 		});
+	};
+
+	// Results related Functions:
+	// Pairs ingredient measures with ingredient names based on results from api call
+	getIngredientArray = (food, num) => {
+		const ingredientArray = [];
+		for (let i = 1; i <= num; i++) {
+			if (food[`strIngredient${i}`] !== '' && food[`strIngredient${i}`] !== null) {
+				ingredientArray.push({
+					measure: food[`strMeasure${i}`],
+					name: food[`strIngredient${i}`],
+				});
+			}
+		}
+		return ingredientArray;
 	};
 
 	// Get a new drink, meal, or movie
