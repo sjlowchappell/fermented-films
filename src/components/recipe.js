@@ -1,14 +1,13 @@
 import React from 'react';
 import uuidv4 from 'uuid/v4';
-import recipeStyles from './newRecipe.module.css';
 
-function Recipe({ name, image, ingredientList, instructions, onClick, list, value }) {
+function Recipe({ name, image, ingredientList, instructions, onClick, value }) {
 	return (
 		<div className="wrapper">
 			<h2>{name}</h2>
 			{/* Set image next to ingredient list, followed by instructions*/}
-			<div className={recipeStyles.container}>
-				<div className={recipeStyles.image}>
+			<div className="recipeContainer">
+				<div className="recipeImage">
 					<img src={image} alt={image} />
 				</div>
 				<div>

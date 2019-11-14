@@ -24,7 +24,7 @@ function Recommendation({ drink, meal, movie, onClick }) {
 	const posterPath = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 	return (
 		<div className="wrapper">
-			<div className="recommendation-container">
+			<div className="consumableContainer">
 				<RecommendationItem
 					type={'drink'}
 					image={drink.strDrinkThumb}

@@ -9,7 +9,7 @@ function Movie({ movie, onClick }) {
 			<div>
 				{/* Movie Info, pair movie poster with movie details, followed by its description*/}
 				<h2>{title}</h2>
-				<div className="movie-recommendation">
+				<div className="movieRecommendation">
 					<div className="moviePoster">
 						<img src={posterPath} alt={`${title} movie poster`} />
 					</div>

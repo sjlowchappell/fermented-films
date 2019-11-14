@@ -69,8 +69,8 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			ingredient: 'No ingredient selected',
-			genre: 'No genre selected',
+			ingredient: 'lime',
+			genre: 'any!',
 			isSubmitted: false,
 		};
 	}
@@ -331,7 +331,6 @@ class App extends Component {
 											)}
 											instructions={this.state.currentSelections[0].strInstructions}
 											onClick={this.shakeItUp}
-											list={'drinkOptions'}
 											value={'0'}
 										/>
 									)}
@@ -349,7 +348,6 @@ class App extends Component {
 											)}
 											instructions={this.state.currentSelections[1].strInstructions}
 											onClick={this.shakeItUp}
-											list={'mealOptions'}
 											value={'1'}
 										/>
 									)}

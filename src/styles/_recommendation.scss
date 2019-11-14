@@ -1,4 +1,4 @@
-.recommendation-container {
+.consumableContainer {
 	display: flex;
 	justify-content: space-between;
 	margin: 20px 0px;
@@ -17,10 +17,6 @@
 	background: darken($background-color, 20);
 	margin: 5px;
 	padding: 15px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	border-radius: 100%;
 
 	img {
