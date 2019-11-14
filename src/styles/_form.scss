@@ -3,29 +3,12 @@ form {
 	button {
 		margin: 30px 0px;
 	}
-}
-
-.ingredientsGallery {
-	display: flex;
-	flex-wrap: wrap;
-	margin: 20px 0px;
-
-	& > * {
-		padding: 0px 5px;
-		flex: 1 0 190px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
 	input[type='radio'] {
 		opacity: 0;
 		&:checked + label {
 			background-color: $text-color;
 		}
 	}
-
 	label {
 		background: darken($background-color, 20);
 		margin: 5px;
@@ -45,11 +28,10 @@ form {
 	}
 }
 
-.genresGallery {
+.gallery {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 20px 0px;
-
 	& > * {
 		padding: 0px 5px;
 		flex: 1 0 190px;
@@ -58,38 +40,21 @@ form {
 		align-items: center;
 		justify-content: center;
 	}
+}
 
-	input[type='radio'] {
-		opacity: 0;
-		&:checked + label {
-			background-color: $text-color;
-			color: $background-color;
-		}
+.genres {
+	input[type='radio']:checked + label {
+		color: $background-color;
 	}
 
 	label {
-		background: darken($background-color, 20);
-		margin: 5px;
-		padding: 15px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		border-radius: 100%;
 		text-transform: capitalize;
 		width: 172.5px;
 		height: 172.5px;
-		img {
-			border-radius: 100%;
-			display: block;
-		}
-		p {
-			margin: 0;
-		}
 	}
 }
 
-.ingredientSelection {
+.formText {
 	margin: 50px 0px 20px 0px;
 	font-size: 2.5rem;
 	.specialWord {

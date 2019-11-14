@@ -21,12 +21,12 @@ function Form({
 				combination around your selection. Don't like one of our recommendations? Click "Shake it up!" and we'll
 				find another that suits your needs.
 			</p>
-			<p>Pick an Ingredient Theme:</p>
 
 			{/* form to submit ingredient theme and movie genres */}
-			<form>
+			<form className="form">
+				<p className="formText">Choose an Ingredient Theme:</p>
 				{/* Gallery of ingredient images serve as inputs for form */}
-				<div className="ingredientsGallery">
+				<div className="gallery">
 					{ingredients.map(ingredient => {
 						return (
 							<div key={uuidv4()}>
@@ -47,11 +47,11 @@ function Form({
 				</div>
 
 				{/* Genres as inputs for form */}
-				<p>Do you have a preferred movie genre?</p>
-				<div className="genresGallery">
+				<p className="formText">Do you have a preferred movie genre?</p>
+				<div className="gallery">
 					{genres.map(genre => {
 						return (
-							<div key={uuidv4()}>
+							<div key={uuidv4()} className="genres">
 								<input
 									type="radio"
 									name="genre"
@@ -66,11 +66,11 @@ function Form({
 					})}
 				</div>
 
-				<p className="ingredientSelection">
+				<p className="formText">
 					Ingredient Theme Selection: <span className="specialWord">{currentlySelectedIngredient}</span>
 				</p>
 
-				<p className="ingredientSelection">
+				<p className="formText">
 					Movie Genre Selection: <span className="specialWord">{currentlySelectedGenre}</span>
 				</p>
 
