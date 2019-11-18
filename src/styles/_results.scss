@@ -20,3 +20,15 @@ a:hover {
 		}
 	}
 }
+
+@media (max-width: 750px) {
+	.subNav {
+		width: 80%;
+	}
+}
+
+@media (max-width: 500px) {
+	.subNav {
+		width: 100%;
+	}
+}

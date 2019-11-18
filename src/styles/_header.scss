@@ -15,14 +15,18 @@
 }
 
 @media (max-width: 750px) {
-	h1 {
-		font-size: 6.5rem;
-		padding-top: 80px;
+	.homeHeader {
+		h1 {
+			font-size: 6.5rem;
+			padding-top: 80px;
+		}
 	}
 }
 
 @media (max-width: 500px) {
-	h1 {
-		font-size: 4.5rem;
+	.homeHeader {
+		h1 {
+			font-size: 4.5rem;
+		}
 	}
 }
