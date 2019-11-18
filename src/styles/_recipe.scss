@@ -48,3 +48,13 @@
 		}
 	}
 }
+
+@media (max-width: 600px) {
+	.recipeContainer {
+		flex-direction: column;
+	}
+	.recipeImage {
+		margin-right: 0px;
+		margin-bottom: 20px;
+	}
+}

@@ -40,7 +40,7 @@ function Recipe({ name, image, ingredientList, instructions, onClick, value }) {
 						})}
 					</ul>
 					{/* if the description is too long, add a button to expand it */}
-					{ingredientList.length > 10 ? (
+					{ingredientList.length > 7 ? (
 						<button className="expandButton" onClick={expandDescription}>
 							<img className="svgIcon" src={plusIcon} alt="Expand Description" />
 							<img className="closedIcon svgIcon" src={minusIcon} alt="Collapse Description" />
