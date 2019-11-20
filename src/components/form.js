@@ -17,8 +17,8 @@ function Form({
 			{isSubmitted && <Redirect to="/results/recommendations/" />}
 			{/* blurb talking about the app */}
 			<p>
-				With Fermented Films, pick an ingredient theme for the evening. We'll curate a meal, drink, and movie
-				combination around your selection. Don't like one of our recommendations? Click "Shake it up!" and we'll
+				With Fermented Films, pick an ingredient theme for the evening and select your preferred movie genre. We'll curate a meal, drink, and movie
+				combination around your selections. Don't like one of our recommendations? Click "Shake it up!" and we'll
 				find another that suits your needs.
 			</p>
 

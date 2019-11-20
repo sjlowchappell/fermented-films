@@ -41,9 +41,3 @@ export default [
 		picture: milk,
 	}
 ];
-
-// const greeting = "Hello";
-
-// export default function(name) {
-//     console.log(`${greeting} ${name}!`) ;
-// }
