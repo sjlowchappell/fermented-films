@@ -10,60 +10,9 @@ import Recommendation from './components/recommendation';
 import Recipe from './components/recipe';
 import Movie from './components/movie';
 import Footer from './components/footer';
-import lime from './assets/lime.jpg';
-import lemon from './assets/lemon.jpg';
-import egg from './assets/egg.jpg';
-import orange from './assets/orange.jpg';
-import water from './assets/water.jpg';
-import ginger from './assets/ginger.jpg';
-import strawberry from './assets/strawberry.jpg';
-import milk from './assets/milk.jpg';
+import genres from './utils/genres';
 
 // so far I know that there are movie options for comedy and drama for all ingredients. Would be nice to pick one more genre filter option
-
-const ingredients = [
-	{
-		name: 'lime',
-		picture: lime,
-	},
-	{
-		name: 'lemon',
-		picture: lemon,
-	},
-	{
-		name: 'egg',
-		picture: egg,
-	},
-	{
-		name: 'orange',
-		picture: orange,
-	},
-	{
-		name: 'water',
-		picture: water,
-	},
-	{
-		name: 'ginger',
-		picture: ginger,
-	},
-	{
-		name: 'strawberries',
-		picture: strawberry,
-	},
-	{
-		name: 'milk',
-		picture: milk,
-	},
-	// {
-	// 	name: 'wine',
-	// 	picture: wine,
-	// },
-	// {
-	// 	name: 'sugar',
-	// 	picture: sugar,
-	// },
-];
-const genres = [{ name: 'comedy', id: 35 }, { name: 'drama', id: 18 }, { name: 'any!', id: null }];
 
 class App extends Component {
 	constructor() {
@@ -282,7 +231,6 @@ class App extends Component {
 								<Form
 									{...props}
 									currentlySelectedIngredient={this.state.ingredient}
-									ingredients={ingredients}
 									currentlySelectedGenre={this.state.genre}
 									genres={genres}
 									handleFormSubmit={this.handleFormSubmit}

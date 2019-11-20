@@ -1,10 +1,10 @@
 import React from 'react';
 import uuidv4 from 'uuid/v4';
 import { Redirect } from 'react-router-dom';
+import ingredients from '../utils/ingredients'
 
 function Form({
 	currentlySelectedIngredient,
-	ingredients,
 	currentlySelectedGenre,
 	genres,
 	handleFormSubmit,
