@@ -16,7 +16,6 @@ class Recipe extends Component {
 			: this.setState({ listState: 'closed' });
 	};
 	largeList = list => {
-		console.log('there are lots of ingredients!' + list);
 		if (this.state.listState === 'closed') {
 			return (
 				<>
