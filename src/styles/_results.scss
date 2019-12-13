@@ -8,6 +8,19 @@ a:hover {
 	align-items: center;
 }
 
+.resultsLink {
+	position: relative;
+	&::after {
+		position: absolute;
+		top: 10px;
+		right: -35%;
+		width: 2px;
+		height: 25px;
+		background: white;
+		content: '';
+	}
+}
+
 .subNav {
 	display: flex;
 	width: 60%;
@@ -25,10 +38,16 @@ a:hover {
 	.subNav {
 		width: 80%;
 	}
+	.resultsLink::after {
+		right: -60%;
+	}
 }
 
 @media (max-width: 500px) {
 	.subNav {
 		width: 100%;
+	}
+	.resultsLink::after {
+		right: -40%;
 	}
 }

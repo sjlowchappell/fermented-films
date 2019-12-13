@@ -1,7 +1,7 @@
 import React from 'react';
 import uuidv4 from 'uuid/v4';
 import { Redirect } from 'react-router-dom';
-import ingredients from '../utils/ingredients'
+import ingredients from '../utils/ingredients';
 
 function Form({
 	currentlySelectedIngredient,
@@ -17,9 +17,9 @@ function Form({
 			{isSubmitted && <Redirect to="/results/recommendations/" />}
 			{/* blurb talking about the app */}
 			<p>
-				With Fermented Films, pick an ingredient theme for the evening and select your preferred movie genre. We'll curate a meal, drink, and movie
-				combination around your selections. Don't like one of our recommendations? Click "Shake it up!" and we'll
-				find another that suits your needs.
+				With Fermented Films, pick an ingredient theme for the evening and select your preferred movie genre.
+				We'll curate a meal, drink, and movie combination around your selections. Don't like one of our
+				recommendations? Click "Shake it up!" and we'll find another that suits your needs.
 			</p>
 
 			{/* form to submit ingredient theme and movie genres */}
