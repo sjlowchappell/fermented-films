@@ -1,35 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
 import plusIcon from '../assets/plus.svg';
 import minusIcon from '../assets/minus.svg';
 
-function Recipe({ name, image, ingredientList, instructions, onClick, value }) {
-	const expandDescription = e => {
-		e.stopPropagation();
-		const description = e.target.parentElement.previousElementSibling;
-		const icon = e.target;
-		if (description.classList.contains('descriptionClosed')) {
-			description.classList.toggle('descriptionClosed');
-			icon.classList.toggle('closedIcon');
-			icon.nextElementSibling.classList.toggle('closedIcon');
-		} else {
-			description.classList.toggle('descriptionClosed');
-			icon.classList.toggle('closedIcon');
-			icon.previousElementSibling.classList.toggle('closedIcon');
-		}
+class Recipe extends Component {
+	constructor() {
+		super();
+		this.state = {
+			listState: 'closed',
+		};
+	}
+	expandDescription = () => {
+		this.state.listState === 'closed'
+			? this.setState({ listState: 'open' })
+			: this.setState({ listState: 'closed' });
 	};
-	return (
-		<div className="wrapper">
-			<h2>{name}</h2>
-			{/* Set image next to ingredient list, followed by instructions*/}
-			<div className="recipeContainer">
-				<div className="recipeImage">
-					<img src={image} alt={image} />
-				</div>
-				<div className="ingredientsContainer">
-					<p>Ingredients:</p>
+	largeList = list => {
+		console.log('there are lots of ingredients!' + list);
+		if (this.state.listState === 'closed') {
+			return (
+				<>
 					<ul className="descriptionClosed">
-						{ingredientList.map(ingredient => {
+						{list.map(ingredient => {
 							return (
 								<li key={uuidv4()}>
 									<span className="specialWord">{ingredient.measure}</span> {ingredient.name}
@@ -37,24 +29,68 @@ function Recipe({ name, image, ingredientList, instructions, onClick, value }) {
 							);
 						})}
 					</ul>
-					{/* if the description is too long, add a button to expand it */}
-					{ingredientList.length > 7 ? (
-						<button className="expandButton" onClick={expandDescription}>
-							<img className="svgIcon" src={plusIcon} alt="Expand Description" />
-							<img className="closedIcon svgIcon" src={minusIcon} alt="Collapse Description" />
-						</button>
-					) : null}
+					<button className="expandButton" onClick={this.expandDescription}>
+						<img className="svgIcon" src={plusIcon} alt="Expand Description" />
+					</button>
+				</>
+			);
+		} else {
+			return (
+				<>
+					<ul className="descriptionOpen">
+						{list.map(ingredient => {
+							return (
+								<li key={uuidv4()}>
+									<span className="specialWord">{ingredient.measure}</span> {ingredient.name}
+								</li>
+							);
+						})}
+					</ul>
+					<button className="expandButton" onClick={this.expandDescription}>
+						<img className="svgIcon" src={minusIcon} alt="Collapse Description" />
+					</button>
+				</>
+			);
+		}
+	};
+	render() {
+		const { name, image, ingredientList, instructions, onClick, value } = this.props;
+		return (
+			<div className="wrapper">
+				<h2>{name}</h2>
+				{/* Set image next to ingredient list, followed by instructions*/}
+				<div className="recipeContainer">
+					<div className="recipeImage">
+						<img src={image} alt={image} />
+					</div>
+					<div className="ingredientsContainer">
+						<p>Ingredients:</p>
+						{/* if the description is too long, add a button to expand it */}
+						{ingredientList.length > 7 ? (
+							this.largeList(ingredientList)
+						) : (
+							<ul className="descriptionClosed">
+								{ingredientList.map(ingredient => {
+									return (
+										<li key={uuidv4()}>
+											<span className="specialWord">{ingredient.measure}</span> {ingredient.name}
+										</li>
+									);
+								})}
+							</ul>
+						)}
+					</div>
+				</div>
+				<p className="specialWord">Instructions:</p>
+				<p>{instructions}</p>
+				<div className="buttonBox">
+					<button onClick={onClick} value={value}>
+						Shake it Up!
+					</button>
 				</div>
 			</div>
-			<p className="specialWord">Instructions:</p>
-			<p>{instructions}</p>
-			<div className="buttonBox">
-				<button onClick={onClick} value={value}>
-					Shake it Up!
-				</button>
-			</div>
-		</div>
-	);
+		);
+	}
 }
 
 export default Recipe;
