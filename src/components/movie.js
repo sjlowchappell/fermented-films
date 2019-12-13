@@ -23,16 +23,21 @@ function Movie({ movie, onClick }) {
 						<p>
 							<span className="specialWord">Popularity:</span> {popularity} / 100
 						</p>
-						<p className="specialWord">Genres:</p>
-						<ul>
-							{genres.map(genre => {
-								return (
-									<li key={uuidv4()} className="genreList">
-										{genre.name}
-									</li>
-								);
-							})}
-						</ul>
+						{/* Conditionally render genres if there are any */}
+						{genres.length !== 0 ? (
+							<>
+								<p className="specialWord">Genres:</p>
+								<ul>
+									{genres.map(genre => {
+										return (
+											<li key={uuidv4()} className="genreList">
+												{genre.name}
+											</li>
+										);
+									})}
+								</ul>
+							</>
+						) : null}
 					</div>
 				</div>
 				<div>
