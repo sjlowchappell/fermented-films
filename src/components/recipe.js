@@ -8,8 +8,6 @@ function Recipe({ name, image, ingredientList, instructions, onClick, value }) {
 		e.stopPropagation();
 		const description = e.target.parentElement.previousElementSibling;
 		const icon = e.target;
-		console.log(description);
-		console.log(icon);
 		if (description.classList.contains('descriptionClosed')) {
 			description.classList.toggle('descriptionClosed');
 			icon.classList.toggle('closedIcon');
