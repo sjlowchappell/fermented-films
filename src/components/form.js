@@ -24,47 +24,48 @@ function Form({
 
 			{/* form to submit ingredient theme and movie genres */}
 			<form className="form">
-				<p className="formText">Choose an Ingredient Theme:</p>
-				{/* Gallery of ingredient images serve as inputs for form */}
-				<div className="gallery">
-					{ingredients.map(ingredient => {
-						return (
-							<div key={uuidv4()}>
-								<input
-									type="radio"
-									name="ingredient"
-									id={ingredient.name}
-									value={ingredient.name}
-									onChange={handleFormChange}
-									checked={currentlySelectedIngredient === ingredient.name}
-								/>
-								<label htmlFor={ingredient.name}>
-									<img src={ingredient.picture} alt={ingredient.name} />
-								</label>
-							</div>
-						);
-					})}
-				</div>
-
-				{/* Genres as inputs for form */}
-				<p className="formText">Do you have a preferred movie genre?</p>
-				<div className="gallery">
-					{genres.map(genre => {
-						return (
-							<div key={uuidv4()} className="genres">
-								<input
-									type="radio"
-									name="genre"
-									id={genre.name}
-									value={genre.name}
-									onChange={handleFormChange}
-									checked={currentlySelectedGenre === genre.name}
-								/>
-								<label htmlFor={genre.name}>{genre.name}</label>
-							</div>
-						);
-					})}
-				</div>
+				<fieldset>
+					<legend className="formText">Choose an Ingredient Theme:</legend>
+					<div className="gallery">
+						{ingredients.map(ingredient => {
+							return (
+								<div key={uuidv4()}>
+									<input
+										type="radio"
+										name="ingredient"
+										id={ingredient.name}
+										value={ingredient.name}
+										onChange={handleFormChange}
+										checked={currentlySelectedIngredient === ingredient.name}
+									/>
+									<label htmlFor={ingredient.name}>
+										<img src={ingredient.picture} alt={ingredient.name} />
+									</label>
+								</div>
+							);
+						})}
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend className="formText">Do you have a preferred movie genre?</legend>
+					<div className="gallery">
+						{genres.map(genre => {
+							return (
+								<div key={uuidv4()} className="genres">
+									<input
+										type="radio"
+										name="genre"
+										id={genre.name}
+										value={genre.name}
+										onChange={handleFormChange}
+										checked={currentlySelectedGenre === genre.name}
+									/>
+									<label htmlFor={genre.name}>{genre.name}</label>
+								</div>
+							);
+						})}
+					</div>
+				</fieldset>
 
 				<p className="formText">
 					Ingredient Theme Selection: <span className="specialWord">{currentlySelectedIngredient}</span>
