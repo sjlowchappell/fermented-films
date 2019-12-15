@@ -25,12 +25,14 @@ function Results({ drink, meal, movie }) {
 			<nav className="resultsNav">
 				<Link to="/results/recommendations/">All Recommendations</Link>
 				<nav className="subNav">
-					<Link to="/results/drink/" className="resultsLink">
-						Drink Recipe
-					</Link>
-					<Link to="/results/meal/" className="resultsLink">
-						Meal Recipe
-					</Link>
+					<Link to="/results/drink/">Drink Recipe</Link>
+					<span aria-hidden="true" className="navDecorator">
+						|
+					</span>
+					<Link to="/results/meal/">Meal Recipe</Link>
+					<span aria-hidden="true" className="navDecorator">
+						|
+					</span>
 					<Link to="/results/movie/">Movie Info</Link>
 				</nav>
 			</nav>
