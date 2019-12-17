@@ -13,7 +13,7 @@ a:hover {
 	width: 60%;
 	justify-content: space-between;
 	margin: 20px auto;
-	& > * {
+	& > a {
 		border-bottom: 2px solid $accent-color-yellow;
 		&:hover {
 			border-bottom: 2px solid $text-color;
