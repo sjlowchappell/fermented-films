@@ -4,7 +4,10 @@ function Footer() {
 	return (
 		<footer>
 			<div className="wrapper">
-				<p>© {new Date().getFullYear()} built by Sam Low-Chappell</p>
+				<p>
+					© {new Date().getFullYear()} designed and built by{' '}
+					<a href="https://samlow-chappell.com">Sam Low-Chappell</a>
+				</p>
 			</div>
 		</footer>
 	);
