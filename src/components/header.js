@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function Header(props) {
+function Header({ match }) {
 	// save boolean to check if path is exact
-	const isHome = props.match.isExact;
+	const isHome = match.isExact;
 
 	// Conditionally render the header based on whether path is exact
 	return isHome ? (
@@ -27,5 +28,9 @@ function Header(props) {
 		</header>
 	);
 }
+
+Header.propTypes = {
+	match: PropTypes.object,
+};
 
 export default Header;

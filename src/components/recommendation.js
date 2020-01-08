@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // sub-component to render each recommendation item as a circle with image and description with shake it up button
 function RecommendationItem({ type, image, name, value, onClick }) {
@@ -18,6 +19,13 @@ function RecommendationItem({ type, image, name, value, onClick }) {
 		</div>
 	);
 }
+RecommendationItem.propTypes = {
+	type: PropTypes.string,
+	image: PropTypes.string,
+	name: PropTypes.string,
+	value: PropTypes.string,
+	onClick: PropTypes.func,
+};
 
 // When displaying recommendations, set meal and drink next to each other, followed by movie
 function Recommendation({ drink, meal, movie, onClick }) {
@@ -46,5 +54,12 @@ function Recommendation({ drink, meal, movie, onClick }) {
 		</div>
 	);
 }
+
+Recommendation.propTypes = {
+	drink: PropTypes.object,
+	meal: PropTypes.object,
+	movie: PropTypes.object,
+	onClick: PropTypes.func,
+};
 
 export default Recommendation;

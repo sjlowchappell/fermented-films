@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function Results({ drink, meal, movie }) {
 	return (
@@ -39,5 +40,11 @@ function Results({ drink, meal, movie }) {
 		</div>
 	);
 }
+
+Results.propTypes = {
+	drink: PropTypes.object,
+	meal: PropTypes.object,
+	movie: PropTypes.object,
+};
 
 export default Results;

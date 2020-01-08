@@ -2,6 +2,7 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 import { Redirect } from 'react-router-dom';
 import ingredients from '../utils/ingredients';
+import PropTypes from 'prop-types';
 
 function Form({
 	currentlySelectedIngredient,
@@ -81,5 +82,14 @@ function Form({
 		</main>
 	);
 }
+
+Form.propTypes = {
+	currentlySelectedIngredient: PropTypes.string,
+	currentlySelectedGenre: PropTypes.string,
+	genres: PropTypes.array,
+	handleFormSubmit: PropTypes.func,
+	handleFormChange: PropTypes.func,
+	isSubmitted: PropTypes.bool,
+};
 
 export default Form;

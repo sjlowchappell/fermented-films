@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
 import plusIcon from '../assets/plus.svg';
 import minusIcon from '../assets/minus.svg';
+import PropTypes from 'prop-types';
 
 class Recipe extends Component {
 	constructor() {
@@ -91,5 +92,14 @@ class Recipe extends Component {
 		);
 	}
 }
+
+Recipe.propTypes = {
+	name: PropTypes.string,
+	image: PropTypes.string,
+	ingredientList: PropTypes.array,
+	instructions: PropTypes.string,
+	onClick: PropTypes.func,
+	value: PropTypes.string,
+};
 
 export default Recipe;

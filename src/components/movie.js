@@ -1,5 +1,6 @@
 import React from 'react';
 import uuidv4 from 'uuid/v4';
+import PropTypes from 'prop-types';
 
 function Movie({ movie, onClick }) {
 	const { title, poster_path, release_date, runtime, popularity, genres, overview } = movie;
@@ -53,5 +54,10 @@ function Movie({ movie, onClick }) {
 		</div>
 	);
 }
+
+Movie.propTypes = {
+	movie: PropTypes.object,
+	onClick: PropTypes.func,
+};
 
 export default Movie;
