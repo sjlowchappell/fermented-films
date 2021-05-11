@@ -5,8 +5,7 @@ function Footer() {
 		<footer>
 			<div className="wrapper">
 				<p>
-					© {new Date().getFullYear()} designed and built by{' '}
-					<a href="https://samlow-chappell.com">Sam Low-Chappell</a>
+					© {new Date().getFullYear()} <a href="https://samlow-chappell.com">Sam Low-Chappell</a>
 				</p>
 			</div>
 		</footer>
